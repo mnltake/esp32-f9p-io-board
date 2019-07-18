@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:mainPCB-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -230,7 +230,7 @@ Connection ~ 4900 3200
 Wire Wire Line
 	4900 3200 6000 3200
 $Comp
-L Connector_own:PTSM-Header-Horizontal-5 J5
+L mainPCB-rescue:PTSM-Header-Horizontal-5-Connector_own J5
 U 1 1 5CCCDB32
 P 1250 3300
 F 0 "J5" H 1250 3665 50  0000 C CNN

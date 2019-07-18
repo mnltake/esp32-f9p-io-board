@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:mainPCB-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -274,7 +274,7 @@ Connection ~ 2550 950
 Wire Wire Line
 	2550 950  4700 950 
 $Comp
-L Connector_own:SM04B-SRSS-TB(LF)(SN) J13
+L mainPCB-rescue:SM04B-SRSS-TB(LF)(SN)-Connector_own J13
 U 1 1 5CC11751
 P 8950 2400
 F 0 "J13" V 8996 2222 50  0000 R CNN
@@ -288,7 +288,7 @@ F 6 "SM04B-SRSS-TB(LF)(SN)" H 8200 1750 50  0001 L CNN "Manufacturer_Part_Number
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Connector_own:SM04B-SRSS-TB(LF)(SN) J17
+L mainPCB-rescue:SM04B-SRSS-TB(LF)(SN)-Connector_own J17
 U 1 1 5CC131AA
 P 9900 2400
 F 0 "J17" V 9946 2222 50  0000 R CNN

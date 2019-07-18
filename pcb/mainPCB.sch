@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:mainPCB-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -1009,7 +1009,7 @@ F5 "+3V3" B L 1600 4450 50
 $EndSheet
 Connection ~ 2550 2400
 $Comp
-L Interface_Expansion_own:FXL6408UMX IC1
+L mainPCB-rescue:FXL6408UMX-Interface_Expansion_own IC1
 U 1 1 5CE85D35
 P 4000 4950
 F 0 "IC1" H 4200 5550 50  0000 L CNN
@@ -1130,8 +1130,8 @@ L Device:LED D2
 U 1 1 5CF26AE8
 P 5000 6650
 F 0 "D2" H 4992 6395 50  0000 C CNN
-F 1 "LED/blue" H 4992 6486 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric" H 5000 6650 50  0001 C CNN
+F 1 "LED/yellow" H 4992 6486 50  0000 C CNN
+F 2 "LED_SMD:LED_0805_2012Metric" H 5000 6650 50  0001 C CNN
 F 3 "~" H 5000 6650 50  0001 C CNN
 	1    5000 6650
 	-1   0    0    1   
@@ -1268,7 +1268,7 @@ Connection ~ 7000 2400
 Wire Wire Line
 	7000 2400 7000 3000
 $Comp
-L Connector_own:PTSM-Header-Horizontal-7 J3
+L mainPCB-rescue:PTSM-Header-Horizontal-7-Connector_own J3
 U 1 1 5CC33CA3
 P 7800 4950
 F 0 "J3" H 7800 5365 50  0000 C CNN
@@ -1295,7 +1295,7 @@ Wire Wire Line
 Wire Wire Line
 	5000 2400 3600 2400
 $Comp
-L Connector_own:PTSM-Header-Horizontal-6 J1
+L mainPCB-rescue:PTSM-Header-Horizontal-6-Connector_own J1
 U 1 1 5CD05128
 P 1250 1650
 F 0 "J1" V 1204 1878 50  0000 L CNN
@@ -1338,7 +1338,7 @@ Wire Wire Line
 Wire Wire Line
 	8300 4800 8200 4800
 $Comp
-L Connector_own:CCA-Header-Horizontal-4 J4
+L mainPCB-rescue:CCA-Header-Horizontal-4-Connector_own J4
 U 1 1 5CE0099D
 P 10900 4550
 F 0 "J4" V 10854 4728 50  0000 L CNN

@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:mainPCB-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -15,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Relay_own:CP1SA-12V-Z K2
+L mainPCB-rescue:CP1SA-12V-Z-Relay_own K2
 U 1 1 5CEBBD54
 P 5950 3100
 F 0 "K2" H 5950 3465 50  0000 C CNN
@@ -31,7 +31,7 @@ F 8 "CP1SA-12V-Z" H 6800 2500 50  0001 L CNN "Manufacturer_Part_Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GateDriver_own:NUD3124LT1G U10
+L mainPCB-rescue:NUD3124LT1G-GateDriver_own U10
 U 1 1 5CEBBF42
 P 6350 2400
 F 0 "U10" H 6300 2715 50  0000 C CNN
