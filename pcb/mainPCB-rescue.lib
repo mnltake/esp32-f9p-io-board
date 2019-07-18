@@ -1,0 +1,355 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# ATA6561-GAQW-N-Interface_CAN_LIN_own
+#
+DEF ATA6561-GAQW-N-Interface_CAN_LIN_own IC 0 30 Y Y 1 F N
+F0 "IC" -350 400 50 H V L CNN
+F1 "ATA6561-GAQW-N-Interface_CAN_LIN_own" -350 300 50 H V L CNN
+F2 "SOIC127P600X175-8N" 400 250 50 H I L CNN
+F3 "https://componentsearchengine.com/Datasheets/1/ATA6561-GAQW-N.pdf" 400 150 50 H I L CNN
+F4 "MICROCHIP - ATA6561-GAQW-N - CAN TRANSCEIVER, 5MBPS, -40 TO 150DEG C" 400 50 50 H I L CNN "Description"
+F5 "1.75" 400 -50 50 H I L CNN "Height"
+F6 "579-ATA6561-GAQW-N" 400 -150 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.com/Search/Refine.aspx?Keyword=579-ATA6561-GAQW-N" 400 -250 50 H I L CNN "Mouser Price/Stock"
+F8 "Microchip" 400 -350 50 H I L CNN "Manufacturer_Name"
+F9 "ATA6561-GAQW-N" 400 -450 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 -350 250 350 250 350 -250 -350 -250 -350 250 N
+X TXD 1 -550 150 200 R 50 50 0 0 B
+X GND 2 -550 50 200 R 50 50 0 0 B
+X VCC 3 -550 -50 200 R 50 50 0 0 W
+X RXD 4 -550 -150 200 R 50 50 0 0 B
+X VIO 5 550 -150 200 L 50 50 0 0 I
+X CANL 6 550 -50 200 L 50 50 0 0 B
+X CANH 7 550 50 200 L 50 50 0 0 B
+X STBY 8 550 150 200 L 50 50 0 0 I
+ENDDRAW
+ENDDEF
+#
+# BC817-40,215-Transistor_BJT_own
+#
+DEF BC817-40,215-Transistor_BJT_own Q 0 30 Y Y 1 F N
+F0 "Q" 550 50 50 H V L CNN
+F1 "BC817-40,215-Transistor_BJT_own" 550 -50 50 H V L CNN
+F2 "SOT95P230X110-3N" 550 -150 50 H I L CNN
+F3 "https://componentsearchengine.com/Datasheets/1/BC817-40,215.pdf" 550 -250 50 H I L CNN
+F4 "BC817; BC817W; BC337 - 45 V, 500 mA NPN general-purpose transistors" 550 -350 50 H I L CNN "Description"
+F5 "1.1" 550 -450 50 H I L CNN "Height"
+F6 "771-BC817-40-T/R" 550 -550 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.com/Search/Refine.aspx?Keyword=771-BC817-40-T%2FR" 550 -650 50 H I L CNN "Mouser Price/Stock"
+F8 "Nexperia" 550 -750 50 H I L CNN "Manufacturer_Name"
+F9 "BC817-40,215" 550 -850 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+C 350 0 158 0 1 10 N
+P 2 0 1 6 100 0 300 0 N
+P 2 0 1 6 300 -50 400 -150 N
+P 2 0 1 6 300 50 400 150 N
+P 2 0 1 20 300 100 300 -100 N
+P 2 0 1 6 400 -150 400 -200 N
+P 2 0 1 6 400 150 400 200 N
+P 4 0 1 10 330 -100 350 -80 370 -120 330 -100 F
+X ~ 1 0 0 100 R 50 50 0 0 B
+X ~ 2 400 -300 100 U 50 50 0 0 B
+X ~ 3 400 300 100 D 50 50 0 0 B
+ENDDRAW
+ENDDEF
+#
+# CCA-Header-Horizontal-4-Connector_own
+#
+DEF CCA-Header-Horizontal-4-Connector_own J 0 30 Y Y 1 F N
+F0 "J" -50 300 50 H V L CNN
+F1 "CCA-Header-Horizontal-4-Connector_own" -200 200 50 H V L CNN
+F2 "1836366" -700 -250 50 H I L CNN
+F3 "https://www.phoenixcontact.com/online/portal/us?uri=pxc-oc-itemdetail:pid=1836366&library=usen&pdfmode=direct&pdflanguage=en#Dimensions" -700 -350 50 H I L CNN
+F4 "Pluggable Terminal Blocks CCA 2,5/ 4-G P20 THR" -700 -450 50 H I L CNN "Description"
+F5 "8.72" -700 -550 50 H I L CNN "Height"
+F6 "Phoenix Contact" -700 -650 50 H I L CNN "Manufacturer_Name"
+F7 "1836366" -700 -750 50 H I L CNN "Manufacturer_Part_Number"
+F8 "651-1836366" -700 -850 50 H I L CNN "Mouser Part Number"
+F9 "https://www.mouser.com/Search/Refine.aspx?Keyword=651-1836366" -700 -950 50 H I L CNN "Mouser Price/Stock"
+DRAW
+P 5 0 1 6 -200 150 200 150 200 -150 -200 -150 -200 150 N
+X 1 1 -400 50 200 R 50 50 0 0 B
+X 2 2 400 50 200 L 50 50 0 0 B
+X 3 3 -400 -50 200 R 50 50 0 0 B
+X 4 4 400 -50 200 L 50 50 0 0 B
+ENDDRAW
+ENDDEF
+#
+# CP1SA-12V-Z-Relay_own
+#
+DEF CP1SA-12V-Z-Relay_own K 0 30 Y Y 1 F N
+F0 "K" -50 350 50 H V L CNN
+F1 "CP1SA-12V-Z-Relay_own" -300 250 50 H V L CNN
+F2 "CP1SA12VZ" 350 200 50 H I L CNN
+F3 "https://www.mouser.com/datasheet/2/315/cp-catalog-1299312.pdf" 350 100 50 H I L CNN
+F4 "PANASONIC ELECTRIC WORKS - CP1SA-12V-Z - RELAY, AUTOMOTIVE, SPDT, 14VDC, 20A" 350 0 50 H I L CNN "Description"
+F5 "10.5" 350 -100 50 H I L CNN "Height"
+F6 "769-CP1SA-12V-Z" 350 -200 50 H I L CNN "Mouser Part Number"
+F7 "Panasonic" 850 -500 50 H I L CNN "Manufacturer_Name"
+F8 "CP1SA-12V-Z" 850 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 -300 200 300 200 300 -200 -300 -200 -300 200 N
+X COM 1 -500 100 200 R 50 50 0 0 B
+X NO 2 -500 0 200 R 50 50 0 0 B
+X C_1 3 -500 -100 200 R 50 50 0 0 B
+X C_2 4 500 100 200 L 50 50 0 0 B
+X NC 5 500 0 200 L 50 50 0 0 B
+ENDDRAW
+ENDDEF
+#
+# FXL6408UMX-Interface_Expansion_own
+#
+DEF FXL6408UMX-Interface_Expansion_own IC 0 30 Y Y 1 F N
+F0 "IC" 250 750 50 H V L CNN
+F1 "FXL6408UMX-Interface_Expansion_own" 250 650 50 H V L CNN
+F2 "QFN40P180X260X55-16N" 450 -900 50 H I L CNN
+F3 "https://pt.mouser.com/datasheet/2/308/FXL6408-1301001.pdf" 450 -1000 50 H I L CNN
+F4 "Fully Configurable 8-Bit I2C-Controlled GPIO Expander" 450 -1100 50 H I L CNN "Description"
+F5 "0.55" 450 250 50 H I L CNN "Height"
+F6 "512-FXL6408UMX" 450 -1200 50 H I L CNN "Mouser Part Number"
+F7 "ON Semiconductor" 450 -1300 50 H I L CNN "Manufacturer_Name"
+F8 "FXL6408UMX" 450 -800 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 -400 550 400 550 400 -650 -400 -650 -400 550 N
+X /INT 1 -600 150 200 R 50 50 0 0 B
+X /RST 10 600 -50 200 L 50 50 0 0 B
+X GPIO1 11 600 50 200 L 50 50 0 0 B
+X GPIO0 12 600 150 200 L 50 50 0 0 B
+X SCL 13 100 750 200 D 50 50 0 0 B
+X SDA 14 0 750 200 D 50 50 0 0 B
+X VCC 15 -100 750 200 D 50 50 0 0 B
+X GND 16 -200 750 200 D 50 50 0 0 B
+X VDDIO 2 -600 50 200 R 50 50 0 0 B
+X GPIO7 3 -600 -50 200 R 50 50 0 0 B
+X GPIO6 4 -600 -150 200 R 50 50 0 0 B
+X GPIO5 5 -200 -850 200 U 50 50 0 0 B
+X GPIO4 6 -100 -850 200 U 50 50 0 0 B
+X GPIO3 7 0 -850 200 U 50 50 0 0 B
+X GPIO2 8 100 -850 200 U 50 50 0 0 B
+X ADDR 9 600 -150 200 L 50 50 0 0 B
+ENDDRAW
+ENDDEF
+#
+# ICL3221EIVZ-Interface_UART_own
+#
+DEF ICL3221EIVZ-Interface_UART_own IC 0 30 Y Y 1 F N
+F0 "IC" -200 650 50 H V L CNN
+F1 "ICL3221EIVZ-Interface_UART_own" -200 550 50 H V L CNN
+F2 "SOP65P640X120-16N" -1100 -650 50 H I L CNN
+F3 "http://www.intersil.com/content/dam/Intersil/documents/icl3/icl3221e-22e-23e-32e-41e-43e.pdf" -1100 -750 50 H I L CNN
+F4 "Intersil ICL3221EIVZ, Line Transceiver, EIA/TIA-232/ RS-232/ V.24/ V.28, 3.3 V, 5 V, 16-Pin TSSOP" -1100 -850 50 H I L CNN "Description"
+F5 "1.2" 500 150 50 H I L CNN "Height"
+F6 "Intersil" 500 -150 50 H I L CNN "Manufacturer_Name"
+F7 "ICL3221EIVZ" -1100 -550 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 -450 450 450 450 450 -450 -450 -450 -450 450 N
+X EN 1 -650 350 200 R 50 50 0 0 B
+X INVALID 10 650 -250 200 L 50 50 0 0 B
+X T1IN 11 650 -150 200 L 50 50 0 0 B
+X FORCEON 12 650 -50 200 L 50 50 0 0 B
+X T1OUT 13 650 50 200 L 50 50 0 0 B
+X GND 14 650 150 200 L 50 50 0 0 B
+X VCC 15 650 250 200 L 50 50 0 0 B
+X FORCEOFF 16 650 350 200 L 50 50 0 0 B
+X C1+ 2 -650 250 200 R 50 50 0 0 B
+X V+ 3 -650 150 200 R 50 50 0 0 B
+X C1- 4 -650 50 200 R 50 50 0 0 B
+X C2+ 5 -650 -50 200 R 50 50 0 0 B
+X C2- 6 -650 -150 200 R 50 50 0 0 B
+X V- 7 -650 -250 200 R 50 50 0 0 B
+X R1IN 8 -650 -350 200 R 50 50 0 0 B
+X R1OUT 9 650 -350 200 L 50 50 0 0 B
+ENDDRAW
+ENDDEF
+#
+# NUD3124LT1G-GateDriver_own
+#
+DEF NUD3124LT1G-GateDriver_own U 0 30 Y Y 1 F N
+F0 "U" -250 350 50 H V L CNN
+F1 "NUD3124LT1G-GateDriver_own" -250 250 50 H V L CNN
+F2 "SOT95P237X100-3N" -450 -400 50 H I L CNN
+F3 "https://www.mouser.com/datasheet/2/308/NUD3124-D-91887.pdf" -1050 -700 50 H I L CNN
+F4 "ON Semiconductor NUD3124LT1G, MOSFET Power Driver, 150mA, 3-Pin SOT-23" -1250 -850 50 H I L CNN "Description"
+F5 "1" 450 -150 50 H I L CNN "Height"
+F6 "ON Semiconductor" -150 -500 50 H I L CNN "Manufacturer_Name"
+F7 "NUD3124LT1G" -150 -600 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 -500 150 400 150 400 -150 -500 -150 -500 150 N
+X GATE 1 -700 50 200 R 50 50 0 0 B
+X SOURCE 2 -700 -50 200 R 50 50 0 0 B
+X DRAIN 3 600 50 200 L 50 50 0 0 B
+ENDDRAW
+ENDDEF
+#
+# PTSM-Header-Horizontal-2-Connector_own
+#
+DEF PTSM-Header-Horizontal-2-Connector_own J 0 30 Y Y 1 F N
+F0 "J" -50 300 50 H V L CNN
+F1 "PTSM-Header-Horizontal-2-Connector_own" -150 200 50 H V L CNN
+F2 "SHDR2W90P0X250_1X2_670X750X500P" -750 -300 50 H I L CNN
+F3 "" -750 -400 50 H I L CNN
+F4 "Phoenix Contact PTSM Series, 2.5mm Pitch 2 Way 1 Row Right Angle PCB Terminal Block, Solder Termination, 6A" -750 -500 50 H I L CNN "Description"
+F5 "5" -750 -600 50 H I L CNN "Height"
+F6 "651-1814841" -750 -700 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.com/Search/Refine.aspx?Keyword=651-1814841" -750 -800 50 H I L CNN "Mouser Price/Stock"
+F8 "Phoenix Contact" -750 -900 50 H I L CNN "Manufacturer_Name"
+F9 "1814841" -750 -1000 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 -200 150 200 150 200 -150 -200 -150 -200 150 N
+X 1 1 -400 50 200 R 50 50 0 0 B
+X 2 2 -400 -50 200 R 50 50 0 0 B
+ENDDRAW
+ENDDEF
+#
+# PTSM-Header-Horizontal-5-Connector_own
+#
+DEF PTSM-Header-Horizontal-5-Connector_own J 0 30 Y Y 1 F N
+F0 "J" -50 350 50 H V L CNN
+F1 "PTSM-Header-Horizontal-5-Connector_own" -150 250 50 H V L CNN
+F2 "1814870" -500 -500 50 H I L CNN
+F3 "https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1814870.pdf" -500 -300 50 H I L CNN
+F4 "Phoenix Contact PTSM Series, 2.5mm Pitch 5 Way 1 Row Right Angle PCB Terminal Block, Solder Termination, 6A" -500 -400 50 H I L CNN "Description"
+F5 "5" -500 -1000 50 H I L CNN "Height"
+F6 "651-1814870" -500 -600 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.com/Search/Refine.aspx?Keyword=651-1814870" -500 -900 50 H I L CNN "Mouser Price/Stock"
+F8 "Phoenix Contact" -500 -700 50 H I L CNN "Manufacturer_Name"
+F9 "1814870" -500 -800 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 -200 200 200 200 200 -200 -200 -200 -200 200 N
+X 1 1 -400 100 200 R 50 50 0 0 B
+X 2 2 400 100 200 L 50 50 0 0 B
+X 3 3 -400 0 200 R 50 50 0 0 B
+X 4 4 400 0 200 L 50 50 0 0 B
+X 5 5 -400 -100 200 R 50 50 0 0 B
+ENDDRAW
+ENDDEF
+#
+# PTSM-Header-Horizontal-6-Connector_own
+#
+DEF PTSM-Header-Horizontal-6-Connector_own J 0 30 Y Y 1 F N
+F0 "J" -50 350 50 H V L CNN
+F1 "PTSM-Header-Horizontal-6-Connector_own" -150 250 50 H V L CNN
+F2 "1814883" -700 -250 50 H I L CNN
+F3 "https://www.arrow.com/en/products/1814883/phoenix-contact" -700 -350 50 H I L CNN
+F4 "Phoenix Contact PTSM Series, 2.5mm Pitch 6 Way 1 Row Right Angle PCB Terminal Block, Solder Termination, 6A" -700 -450 50 H I L CNN "Description"
+F5 "5" 650 -200 50 H I L CNN "Height"
+F6 "651-1814883" -700 -650 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.com/Search/Refine.aspx?Keyword=651-1814883" -700 -750 50 H I L CNN "Mouser Price/Stock"
+F8 "Phoenix Contact" -700 -850 50 H I L CNN "Manufacturer_Name"
+F9 "1814883" -700 -950 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 -200 200 200 200 200 -200 -200 -200 -200 200 N
+X 1 1 -400 100 200 R 50 50 0 0 B
+X 2 2 400 100 200 L 50 50 0 0 B
+X 3 3 -400 0 200 R 50 50 0 0 B
+X 4 4 400 0 200 L 50 50 0 0 B
+X 5 5 -400 -100 200 R 50 50 0 0 B
+X 6 6 400 -100 200 L 50 50 0 0 B
+ENDDRAW
+ENDDEF
+#
+# PTSM-Header-Horizontal-7-Connector_own
+#
+DEF PTSM-Header-Horizontal-7-Connector_own J 0 30 Y Y 1 F N
+F0 "J" -50 400 50 H V L CNN
+F1 "PTSM-Header-Horizontal-7-Connector_own" -150 300 50 H V L CNN
+F2 "1814896" -700 -400 50 H I L CNN
+F3 "https://www.arrow.com/en/products/1814896/phoenix-contact" -700 -500 50 H I L CNN
+F4 "Pluggable Terminal Blocks PTSM 0,5/ 7-HH-2,5- THR WH R44" -700 -600 50 H I L CNN "Description"
+F5 "5" -700 -700 50 H I L CNN "Height"
+F6 "651-1814896" -700 -800 50 H I L CNN "Mouser Part Number"
+F7 "https://www.mouser.com/Search/Refine.aspx?Keyword=651-1814896" -700 -900 50 H I L CNN "Mouser Price/Stock"
+F8 "Phoenix Contact" -700 -1000 50 H I L CNN "Manufacturer_Name"
+F9 "1814896" -700 -1100 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 -200 250 200 250 200 -250 -200 -250 -200 250 N
+X 1 1 -400 150 200 R 50 50 0 0 B
+X 2 2 400 150 200 L 50 50 0 0 B
+X 3 3 -400 50 200 R 50 50 0 0 B
+X 4 4 400 50 200 L 50 50 0 0 B
+X 5 5 -400 -50 200 R 50 50 0 0 B
+X 6 6 400 -50 200 L 50 50 0 0 B
+X 7 7 -400 -150 200 R 50 50 0 0 B
+ENDDRAW
+ENDDEF
+#
+# SM04B-SRSS-TB(LF)(SN)-Connector_own
+#
+DEF SM04B-SRSS-TB(LF)(SN)-Connector_own J 0 30 Y Y 1 F N
+F0 "J" -50 300 50 H V L CNN
+F1 "SM04B-SRSS-TB(LF)(SN)-Connector_own" -400 200 50 H V L CNN
+F2 "SM04B-SRSS-TB(LFSN)" -750 -250 50 H I L CNN
+F3 "http://www.jst-mfg.com/product/pdf/eng/eSH.pdf" -750 -350 50 H I L CNN
+F4 "JST (JAPAN SOLDERLESS TERMINALS) - SM04B-SRSS-TB(LF)(SN) - CONNECTOR, HEADER, SMT, R/A, 1MM, 4WAY" -750 -450 50 H I L CNN "Description"
+F5 "JST (JAPAN SOLDERLESS TERMINALS)" -750 -550 50 H I L CNN "Manufacturer_Name"
+F6 "SM04B-SRSS-TB(LF)(SN)" -750 -650 50 H I L CNN "Manufacturer_Part_Number"
+DRAW
+P 5 0 1 6 -200 150 200 150 200 -150 -200 -150 -200 150 N
+X 1 1 -400 50 200 R 50 50 0 0 B
+X 2 2 400 50 200 L 50 50 0 0 B
+X 3 3 -400 -50 200 R 50 50 0 0 B
+X 4 4 400 -50 200 L 50 50 0 0 B
+ENDDRAW
+ENDDEF
+#
+# V78E05-1000-SMT-TR-Regulator_Switching_own
+#
+DEF V78E05-1000-SMT-TR-Regulator_Switching_own PS 0 40 Y Y 1 F N
+F0 "PS" -50 450 50 H V L BNN
+F1 "V78E05-1000-SMT-TR-Regulator_Switching_own" -400 -500 50 H V L BNN
+F2 "CONV_V78E05-1000-SMT-TR" 150 450 50 H I L BNN
+F3 "Manufacturer Recommendations" 150 550 50 H I L BNN
+F4 "CUI Inc" 0 0 50 H I L BNN
+$FPLIST
+ SOP254P1140X825-10N
+$ENDFPLIST
+DRAW
+P 2 0 0 10 -400 -400 -400 400 N
+P 2 0 0 10 -400 400 400 400 N
+P 2 0 0 10 400 -400 -400 -400 N
+P 2 0 0 10 400 400 400 -400 N
+X +VIN 1 -600 200 200 R 40 40 0 0 I
+X ON/OFF 10 -600 -100 200 R 40 40 0 0 I
+X +VIN 2 -600 200 200 R 40 40 0 0 I
+X GND 3 600 -300 200 L 40 40 0 0 W
+X +VOUT 4 600 200 200 L 40 40 0 0 O
+X +VOUT 5 600 200 200 L 40 40 0 0 O
+X V_ADJ 6 -600 100 200 R 40 40 0 0 I
+X GND 7 600 -300 200 L 40 40 0 0 W
+ENDDRAW
+ENDDEF
+#
+# VNH7070AS-Driver_Motor_own
+#
+DEF VNH7070AS-Driver_Motor_own U 0 40 Y Y 1 F N
+F0 "U" 0 -300 50 H V C CNN
+F1 "VNH7070AS-Driver_Motor_own" 0 -400 50 H V C CNN
+F2 "" -50 50 50 H I C CNN
+F3 "" -50 50 50 H I C CNN
+$FPLIST
+ *SO*16*
+$ENDFPLIST
+DRAW
+S -450 0 450 -700 0 1 0 N
+X GNDA 1 -150 -800 100 U 50 50 1 1 W
+X OUTB 10 550 -300 100 L 50 0 1 1 w
+X PWM 11 -550 -300 100 R 50 50 1 1 I
+X VCC 12 0 100 100 D 50 0 1 1 W
+X CS 13 550 -500 100 L 50 50 1 1 O
+X SEL0 14 -550 -450 100 R 50 50 1 1 I
+X OUTA 15 550 -100 100 L 50 0 1 1 w
+X GNDA 16 -150 -800 100 U 50 0 1 1 W
+X OUTA 2 550 -100 100 L 50 50 1 1 w
+X INA 3 -550 -100 100 R 50 50 1 1 I
+X VCC 4 0 100 100 D 50 50 1 1 W
+X VCC 5 0 100 100 D 50 0 1 1 W
+X INB 6 -550 -200 100 R 50 50 1 1 I
+X OUTB 7 550 -300 100 L 50 50 1 1 w
+X GNDB 8 200 -800 100 U 50 50 1 1 W
+X GNDB 9 200 -800 100 U 50 0 1 1 W
+ENDDRAW
+ENDDEF
+#
+#End Library

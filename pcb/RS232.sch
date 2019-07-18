@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:mainPCB-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -15,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Interface_UART_own:ICL3221EIVZ IC3
+L mainPCB-rescue:ICL3221EIVZ-Interface_UART_own IC3
 U 1 1 5CF77802
 P 5600 3150
 F 0 "IC3" H 5600 3765 50  0000 C CNN
