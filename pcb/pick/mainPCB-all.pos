@@ -1,4 +1,4 @@
-### Module positions - created on 2019/07/18 14:37:02 ###
+### Module positions - created on 2019/07/18 17:32:15 ###
 ### Printed by Pcbnew version kicad (5.1.2)-2
 ## Unit = mm, Angle = deg.
 ## Side : All
@@ -37,7 +37,7 @@ C31       2.2u                        C_0805_2012Metric                         
 C32       100n                        C_0805_2012Metric                                   16.4643    19.9672   90.0000  top
 C33       560u                        CP_Elec_10x10.5                                     26.6243    23.0937  270.0000  top
 C34       1n/2000V                    C_1206_3216Metric                                   74.2493    58.9107   90.0000  top
-C35       100n                        C_0805_2012Metric                                   97.3036    52.0817    0.0000  top
+C35       100n/16V                    C_0805_2012Metric                                   97.3036    52.0817    0.0000  top
 C36       100n                        C_0805_2012Metric                                   80.3453    41.8897  180.0000  top
 C37       22u                         C_0805_2012Metric                                   92.2048    43.2867    0.0000  top
 C38       100n                        C_0805_2012Metric                                   92.2048    41.1277    0.0000  top
@@ -54,8 +54,8 @@ C48       100n                        C_0805_2012Metric                         
 C49       100n                        C_0805_2012Metric                                  131.7650    30.5615  270.0000  top
 C50       10u                         C_0805_2012Metric                                  136.0195    30.5958  270.0000  top
 C51       100n                        C_0805_2012Metric                                  133.8605    30.5791  270.0000  top
-D2        LED/yellow                  LED_0805_2012Metric                                 58.4505     3.8151   90.0000  top
-D5        LED/red                     LED_0805_2012Metric_Castellated                     46.3578    62.0827    0.0000  top
+D2        LED/blue                    LED_0805_2012Metric                                 58.4505     3.8151   90.0000  top
+D5        LED/red                     LED_0805_2012Metric                                 46.3578    62.0827    0.0000  top
 D7        SD0805S020S1R0              D_0805_2012Metric                                   50.1978    55.2247  180.0000  top
 D8        SD0805S020S1R0              D_0805_2012Metric                                   36.3248    15.8547  180.0000  top
 D9        LED/green                   LED_0805_2012Metric                                 61.7906     3.8382   90.0000  top
