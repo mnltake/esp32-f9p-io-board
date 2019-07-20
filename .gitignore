@@ -5,3 +5,4 @@
 # kicad
 pcb/*.bak
 pcb/*.kicad_pcb-bak
+code/AG_NTRIP_ESP/AG_NTRIP_ESP_private.ino
