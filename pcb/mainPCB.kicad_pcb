@@ -11,14 +11,14 @@
 
   (page A4)
   (layers
-    (0 F.Cu mixed hide)
+    (0 F.Cu mixed)
     (1 In1.Cu power hide)
     (2 In2.Cu power hide)
-    (31 B.Cu signal hide)
+    (31 B.Cu signal)
     (33 F.Adhes user hide)
     (35 F.Paste user hide)
     (36 B.SilkS user hide)
-    (37 F.SilkS user hide)
+    (37 F.SilkS user)
     (38 B.Mask user hide)
     (39 F.Mask user hide)
     (40 Dwgs.User user hide)
