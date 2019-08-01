@@ -9,32 +9,32 @@ TaskHandle_t Core2;
 //### Just Default values ##################################################################################
 struct Storage{
   
-  char ssid[24]        = "yourSSID";          // WiFi network Client name
-  char password[24]    = "YourPassword";      // WiFi network password
+  char ssid[24]        = "0C8FFFE98F71-2G";          // WiFi network Client name
+  char password[24]    = "5530119582832";      // WiFi network password
   unsigned long timeoutRouter = 65;           // Time (seconds) to wait for WIFI access, after that own Access Point starts 
 
   // Ntrip Caster Data
-  char host[40]        = "195.200.70.200";    // Server IP
+  char host[40]        = "52.194.74.83";    // Server IP
   int  port            = 2101;                // Server Port
-  char mountpoint[40]  = "FPS_BY_RTCM3_3G";   // Mountpoint
-  char ntripUser[40]   = "NTRIPUsername";     // Username
-  char ntripPassword[40]= "NTRIPPassword";    // Password
+  char mountpoint[40]  = "HIGASHIURA";   // Mountpoint
+  char ntripUser[40]   = "guest";     // Username
+  char ntripPassword[40]= "guest";    // Password
 
-  byte sendGGAsentence = 0; // 0 = No Sentence will be sended
+  byte sendGGAsentence = 0  ; // 0 = No Sentence will be sended
                             // 1 = fixed Sentence from GGAsentence below will be sended
                             // 2 = GGA from GPS will be sended
   
-  byte GGAfreq =10;         // time in seconds between GGA Packets
+  byte GGAfreq =5;         // time in seconds between GGA Packets
 
-  char GGAsentence[100] = "$GPGGA,051353.171,4751.637,N,01224.003,E,1,12,1.0,0.0,M,0.0,M,,*6B"; //hc create via www.nmeagen.org
+  char GGAsentence[100] = "$GPGGA,121532.502,3457.224,N,13656.113,E,1,12,1.0,0.0,M,0.0,M,,*6A"; //hc create via www.nmeagen.org
   
   long baudOut = 38400;     // Baudrate of RTCM Port
 
-  byte send_UDP_AOG  = 0;   // 0 = Transmission of NMEA Off
+  byte send_UDP_AOG  = 1;   // 0 = Transmission of NMEA Off
                             // 1 = Transmission of NMEA Sentences to AOG via Ethernet-UDP
                             // 2 = Bluetooth attention: not possible if line useBluetooth = false
 
-  byte enableNtrip   = 0;   // 0 = NTRIP disabled
+  byte enableNtrip   = 2;   // 0 = NTRIP disabled
                             // 1 = ESP NTRIP Client enabled
                             // 2 = AOG NTRIP Client enabled (Port=2233)
   
@@ -52,11 +52,11 @@ boolean debugmode = false;
 #define useBluetooth  1  // 1= possibility to use bluetooth to transfer data to AOG later on, but needs lots of memory.
 
 // IO pins --------------------------------
-#define RX0      3
-#define TX0      1
+#define RX0      3//3
+#define TX0      1//1
 
-#define RX1     14  //simpleRTK TX(xbee) = RX(f9p)
-#define TX1     13  //simpleRTK RX(xbee) = TX(f9p)
+#define RX1     17  //17 simpleRTK TX(xbee) = RX(f9p)
+#define TX1     27  //27simpleRTK RX(xbee) = TX(f9p)
 
 #define RX2     16  
 #define TX2     15 
@@ -64,7 +64,7 @@ boolean debugmode = false;
 #define SDA     21  //I2C Pins
 #define SCL     22
 
-#define LED_PIN_WIFI   32   // WiFi Status LED
+#define LED_PIN_WIFI   2   // WiFi Status LED
 
 //########## BNO055 adress 0x28 ADO = 0 set in BNO_ESP.h means ADO -> GND
 //########## MMA8451 adress 0x1D SAO = 0 set in MMA8452_AOG.h means SAO open (pullup!!)
@@ -90,8 +90,8 @@ const char* ssid_ap     = "NTRIP_Client_ESP_Net";
 const char* password_ap = "";
 
 //static IP
-IPAddress myip(192, 168, 1, 79);  // Roofcontrol module
-IPAddress gwip(192, 168, 1, 1);   // Gateway & Accesspoint IP
+IPAddress myip(192, 168, 3,7);  // Roofcontrol module
+IPAddress gwip(192, 168, 3, 1);   // Gateway & Accesspoint IP
 IPAddress mask(255, 255, 255, 0);
 IPAddress myDNS(8, 8, 8, 8);      //optional
 
@@ -100,7 +100,7 @@ unsigned int portAOG = 8888;      // port to listen for AOG
 unsigned int portMyNtrip = 2233;
 
 //IP address to send UDP data to:
-IPAddress ipDestination(192, 168, 1, 255);
+IPAddress ipDestination(192, 168, 3, 255);
 unsigned int portDestination = 9999;  // Port of AOG that listens
 
 // Variables ------------------------------
