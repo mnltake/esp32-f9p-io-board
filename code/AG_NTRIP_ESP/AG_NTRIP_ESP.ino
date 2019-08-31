@@ -9,14 +9,14 @@ TaskHandle_t Core2;
 //### Just Default values ##################################################################################
 struct Storage{
   
-  char ssid[24]        = "0C8FFFE98F71-2G";          // WiFi network Client name
-  char password[24]    = "5530119582832";      // WiFi network password
+  char ssid[24]        = "***********";          // WiFi network Client name
+  char password[24]    = "***********";      // WiFi network password
   unsigned long timeoutRouter = 65;           // Time (seconds) to wait for WIFI access, after that own Access Point starts 
 
   // Ntrip Caster Data
-  char host[40]        = "52.194.74.83";    // Server IP
+  char host[40]        = "**.**.**.**.";    // Server IP
   int  port            = 2101;                // Server Port
-  char mountpoint[40]  = "HIGASHIURA";   // Mountpoint
+  char mountpoint[40]  = "*****";   // Mountpoint
   char ntripUser[40]   = "guest";     // Username
   char ntripPassword[40]= "guest";    // Password
 
