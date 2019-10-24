@@ -320,7 +320,11 @@ void loop() {
           Serial.print("  I2: ");
           Serial.println(analogRead(ANALOG_INPUT2));
         } else {
-          Serial.println("Ok");
+          Serial.print("Ok");
+          Serial.print("  I1: ");
+          Serial.print(analogRead(ANALOG_INPUT1));
+          Serial.print("  I2: ");
+          Serial.println(analogRead(ANALOG_INPUT2));
         }
 
         // PWM 50%, both active => 12V
@@ -334,7 +338,11 @@ void loop() {
           Serial.print("  I2: ");
           Serial.println(analogRead(ANALOG_INPUT2));
         } else {
-          Serial.println("Ok");
+          Serial.print("Ok");
+          Serial.print("  I1: ");
+          Serial.print(analogRead(ANALOG_INPUT1));
+          Serial.print("  I2: ");
+          Serial.println(analogRead(ANALOG_INPUT2));
         }
 
         // PWM 100%, A active
@@ -348,7 +356,11 @@ void loop() {
           Serial.print("  I2: ");
           Serial.println(analogRead(ANALOG_INPUT2));
         } else {
-          Serial.println("Ok");
+          Serial.print("Ok");
+          Serial.print("  I1: ");
+          Serial.print(analogRead(ANALOG_INPUT1));
+          Serial.print("  I2: ");
+          Serial.println(analogRead(ANALOG_INPUT2));
         }
 
         // PWM 100%, B active
@@ -362,7 +374,11 @@ void loop() {
           Serial.print("  I2: ");
           Serial.println(analogRead(ANALOG_INPUT2));
         } else {
-          Serial.println("Ok");
+          Serial.print("Ok");
+          Serial.print("  I1: ");
+          Serial.print(analogRead(ANALOG_INPUT1));
+          Serial.print("  I2: ");
+          Serial.println(analogRead(ANALOG_INPUT2));
         }
 
        // PWM 0%, both disabled
