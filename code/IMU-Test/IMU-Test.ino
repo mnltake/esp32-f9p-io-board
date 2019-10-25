@@ -228,14 +228,12 @@ void loop()
     //printAttitude(imu.ax, imu.ay, imu.az,-imu.my, -imu.mx, imu.mz);
     //Serial.println();
     float degroll = atan2(imu.ay, imu.az);
-    degroll  *= 180.0 / PI;
+    degroll  *= 2880.0 / PI;//180*16=2880 16 counts per degree (good for 0 - +/-30 degrees) 
 
   Serial.print("degroll: ");
-  //Serial.print(pitch, 2);
-  //Serial.print(", ");
   Serial.println(degroll, 4);
  // Serial.print("Heading: "); Serial.println(heading, 2);
-   int rollK = degroll*16; //16 counts per degree (good for 0 - +/-30 degrees) 
+   int rollK = degroll; //
    Serial.print("rollK: ");
    Serial.print(rollK);
    lastPrint = millis(); // Update lastPrint time
