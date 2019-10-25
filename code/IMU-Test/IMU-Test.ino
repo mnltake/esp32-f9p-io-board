@@ -62,9 +62,9 @@ static unsigned long lastPrint = 0; // Keep track of print time
 #include "Adafruit_ADS1015.h"
 #include <Wire.h>
 #include "driver/gpio.h"
-#include <LSM9DS1_Registers.h>
-#include <SparkFunLSM9DS1.h>
-#include <LSM9DS1_Types.h>
+#include "LSM9DS1_Registers.h"
+#include "SparkFunLSM9DS1.h"
+#include "LSM9DS1_Types.h"
 #include <ETH.h>
 #include <CAN.h>
 
@@ -225,11 +225,20 @@ void loop()
     // Call print attitude. The LSM9DS1's mag x and y
     // axes are opposite to the accelerometer, so my, mx are
     // substituted for each other.
-    printAttitude(imu.ax, imu.ay, imu.az, 
-                 -imu.my, -imu.mx, imu.mz);
-    Serial.println();
-    
-    lastPrint = millis(); // Update lastPrint time
+    //printAttitude(imu.ax, imu.ay, imu.az,-imu.my, -imu.mx, imu.mz);
+    //Serial.println();
+    float degroll = atan2(imu.ay, imu.az);
+    degroll  *= 180.0 / PI;
+
+  Serial.print("degroll: ");
+  //Serial.print(pitch, 2);
+  //Serial.print(", ");
+  Serial.println(degroll, 4);
+ // Serial.print("Heading: "); Serial.println(heading, 2);
+   int rollK = degroll*16; //16 counts per degree (good for 0 - +/-30 degrees) 
+   Serial.print("rollK: ");
+   Serial.print(rollK);
+   lastPrint = millis(); // Update lastPrint time
   }
 }
 
@@ -268,7 +277,7 @@ void printAccel()
   // If you want to print calculated values, you can use the
   // calcAccel helper function to convert a raw ADC value to
   // g's. Give the function the value that you want to convert.
-  Serial.print(imu.calcAccel(imu.ax), 2);
+  Serial.print(imu.ax, 2);
   Serial.print(", ");
   Serial.print(imu.calcAccel(imu.ay), 2);
   Serial.print(", ");
