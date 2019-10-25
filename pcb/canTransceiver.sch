@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:mainPCB-cache
-EELAYER 29 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -15,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L mainPCB-rescue:ATA6561-GAQW-N-Interface_CAN_LIN_own IC2
+L Interface_CAN_LIN_own:ATA6561-GAQW-N IC2
 U 1 1 5CACB7D0
 P 5550 2300
 F 0 "IC2" H 5550 2715 50  0000 C CNN
@@ -158,7 +158,7 @@ Connection ~ 3500 3100
 Wire Wire Line
 	3500 3100 4500 3100
 $Comp
-L mainPCB-rescue:PTSM-Header-Horizontal-2-Connector_own J18
+L Connector_own:PTSM-Header-Horizontal-2 J18
 U 1 1 5CC27296
 P 9850 2300
 F 0 "J18" H 10078 2346 50  0000 L CNN

@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:mainPCB-cache
-EELAYER 29 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -25,7 +25,7 @@ InB
 Text HLabel 850  2050 0    50   Input ~ 0
 PWM
 $Comp
-L mainPCB-rescue:VNH7070AS-Driver_Motor_own U3
+L Driver_Motor_own:VNH7070AS U3
 U 1 1 5C445805
 P 3300 1350
 AR Path="/5C443F4F/5C445805" Ref="U3"  Part="1" 
