@@ -295,7 +295,10 @@ void process_Request()
       strcpy( tmp_string, "AHRS_TAG");
       strcati( tmp_string, i);
       strcat( tmp_string, "=");
-      if (Pick_Parameter_Zahl(tmp_string, HTML_String) == 1)NtripSettings.AHRSbyte |= 1 << i;
+      if (Pick_Parameter_Zahl(tmp_string, HTML_String) ==1) NtripSettings.AHRSbyte = 1;  
+      if (Pick_Parameter_Zahl(tmp_string, HTML_String) ==2) NtripSettings.AHRSbyte = 2;  
+      if (Pick_Parameter_Zahl(tmp_string, HTML_String) ==3) NtripSettings.AHRSbyte = 3;  
+      if (Pick_Parameter_Zahl(tmp_string, HTML_String) ==4) NtripSettings.AHRSbyte = 4;  
      }
 
     EEprom_write_all();
