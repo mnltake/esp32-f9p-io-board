@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:mainPCB-cache
-EELAYER 29 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -298,7 +298,7 @@ $EndComp
 Wire Wire Line
 	10100 5200 10250 5200
 $Comp
-L mainPCB-rescue:BC817-40,215-Transistor_BJT_own Q2
+L Transistor_BJT_own:BC817-40,215 Q2
 U 1 1 5CB02B3A
 P 9750 3650
 F 0 "Q2" H 10288 3696 50  0000 L CNN
@@ -315,7 +315,7 @@ F 9 "BC817-40,215" H 10300 2800 50  0001 L CNN "Manufacturer_Part_Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L mainPCB-rescue:BC817-40,215-Transistor_BJT_own Q1
+L Transistor_BJT_own:BC817-40,215 Q1
 U 1 1 5CB02C43
 P 8650 4900
 F 0 "Q1" H 9188 4854 50  0000 L CNN

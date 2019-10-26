@@ -55,21 +55,21 @@ boolean debugmode = false;
 #define RX0      3//3
 #define TX0      1//1
 
-#define RX1     17  //17 simpleRTK TX(xbee) = RX(f9p)
-#define TX1     27  //27simpleRTK RX(xbee) = TX(f9p)
+#define RX1     14  //17 simpleRTK TX(xbee) = RX(f9p)
+#define TX1     13  //27simpleRTK RX(xbee) = TX(f9p)
 
 #define RX2     16  
 #define TX2     15 
 
-#define SDA     21  //I2C Pins
-#define SCL     22
+#define SDA     32  //I2C Pins
+#define SCL     33
 
 #define LED_PIN_WIFI   2   // WiFi Status LED
 
 //########## BNO055 adress 0x28 ADO = 0 set in BNO_ESP.h means ADO -> GND
 //########## MMA8451 adress 0x1D SAO = 0 set in MMA8452_AOG.h means SAO open (pullup!!)
 
-#define restoreDefault_PIN 36  // set to 1 during boot, to restore the default values
+#define restoreDefault_PIN 35  // set to 1 during boot, to restore the default values
 
 
 //libraries -------------------------------
