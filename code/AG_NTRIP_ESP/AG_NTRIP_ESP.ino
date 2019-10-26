@@ -4,21 +4,20 @@ TaskHandle_t Core2;
 // Release: V1.26
 // 01.01.2019 W.Eder
 // Enhanced by Matthias Hammer 12.01.2019
-// add by minolu takeuchi 26.10.2019
 //##########################################################################################################
 //### Setup Zone ###########################################################################################
 //### Just Default values ##################################################################################
 struct Storage{
   
   char ssid[24]        = "***************";          // WiFi network Client name
-  char password[24]    = "**************";      // WiFi network password
+  char password[24]    = "*************";      // WiFi network password
 
   unsigned long timeoutRouter = 65;           // Time (seconds) to wait for WIFI access, after that own Access Point starts 
 
   // Ntrip Caster Data
-  char host[40]        = "********";    // Server IP
+  char host[40]        = "**********";    // Server IP
   int  port            = 2101;                // Server Port
-  char mountpoint[40]  = "Mountpoint";   // Mountpoint
+  char mountpoint[40]  = "********";   // Mountpoint
   char ntripUser[40]   = "guest";     // Username
   char ntripPassword[40]= "guest";    // Password
 
@@ -62,8 +61,7 @@ boolean debugmode = false;
 #define TX0      1//1
 
 
-#define LED_PIN_WIFI   2   // WiFi Status LED J2(RX)
-
+//#define LED_PIN_WIFI   2   
 #define ANALOG_INPUT1 36
 #define ANALOG_INPUT2 39
 #define ANALOG_INPUT3 34
@@ -80,7 +78,7 @@ boolean debugmode = false;
 //########## BNO055 adress 0x28 ADO = 0 set in BNO_ESP.h means ADO -> GND
 //########## MMA8451 adress 0x1D SAO = 0 set in MMA8452_AOG.h means SAO open (pullup!!)
 
-#define restoreDefault_PIN 0  // set to 1 during boot, to restore the default values
+#define restoreDefault_PIN 2  // set to 1 during boot, to restore the default values
 
 
 //libraries -------------------------------
@@ -215,10 +213,10 @@ void led_off(){
 // Setup procedure ------------------------
 void setup() {
   Serial.begin(115200);
-  restoreEEprom();
+  
   Wire.begin(I2C_SDA, I2C_SCL, 400000);
   pinMode(restoreDefault_PIN, INPUT);  //
-//IMU setting
+  //IMU setting
   imu.settings.device.commInterface = IMU_MODE_I2C;
   imu.settings.device.mAddress = 0x1C;
   imu.settings.device.agAddress = 0x6A;
@@ -250,7 +248,7 @@ void setup() {
   else { Serial1.begin(NtripSettings.baudOut, SERIAL_8N1, F9P_RX, F9P_TX); } //set new Baudrate
   Serial2.begin(115200,SERIAL_8N1,RS232_RX,RS232_TX); 
   
-  // Setup PINs for VNHs
+  // Setup PINs for VNHs Motor driver
   pinMode(VNH_A_PWM, OUTPUT);
   pinMode(VNH_B_PWM, OUTPUT);
   ledcSetup(0, 1500, 8);
@@ -263,18 +261,7 @@ void setup() {
   analogReadResolution(10); // Default of 12 is not very linear. Recommended to use 10 or 11 depending on needed resolution.
   analogSetAttenuation(ADC_11db); // Default is 11db which is very noisy. But needed for full scale range  Recommended to use 2.5 or 6.
 
-  // Serial for F9P, RS232, Light
- // gpio_pad_select_gpio(GPIO_NUM_13);
- // gpio_set_direction(GPIO_NUM_13, GPIO_MODE_OUTPUT);
-  
- // gpio_pad_select_gpio(GPIO_NUM_15);
- // gpio_pad_select_gpio(GPIO_NUM_16);
- // gpio_set_direction(GPIO_NUM_15, GPIO_MODE_OUTPUT);
- // gpio_set_direction(GPIO_NUM_16, GPIO_MODE_INPUT);
-  
-  //gpio_pad_select_gpio(GPIO_NUM_2);
- // gpio_set_direction(GPIO_NUM_2, GPIO_MODE_OUTPUT);
-
+  //Setup PINs for FXL6408 GPIO Expander
   // direction (Input/Output)
   setByteI2C(0x43, 0x03, 0b11111110);
   // disable High-Z on outputs
@@ -284,8 +271,9 @@ void setup() {
   // set direction of the pull
   setByteI2C(0x43, 0x0D, 0b00000001);
 
+ restoreEEprom();
 
- pinMode(LED_PIN_WIFI, OUTPUT);
+ //pinMode(LED_PIN_WIFI, OUTPUT);
    
   //------------------------------------------------------------------------------------------------------------  
   //create a task that will be executed in the Core1code() function, with priority 1 and executed on core 0

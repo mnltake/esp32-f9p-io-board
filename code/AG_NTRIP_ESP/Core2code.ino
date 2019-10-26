@@ -72,10 +72,10 @@ void Core2code( void * pvParameters ){
         //if ( imu.magAvailable() ) imu.readMag();
         float degroll = atan2(imu.ay, imu.az);
         degroll  *= 2880.0 / PI; //180*16=2880  16 counts per degree (good for 0 - +/-30 degrees) 
-        Serial.println(degroll, 4);
+        //Serial.println(degroll, 4);
 				degroll -= roll_corr/17.7;  // 8500/480=17.708
 				rollK = int(degroll); //int 
-        Serial.print(rollK);
+        //Serial.print(rollK);
 			}
 			//Kalman filter
 			Pc = P + varProcess;
@@ -131,7 +131,7 @@ void Core2code( void * pvParameters ){
         if (millis() > (LED_WIFI_time + LED_WIFI_pause)) {
           LED_WIFI_time = millis();
           LED_WIFI_ON = true;
-          digitalWrite(LED_PIN_WIFI, HIGH);
+          //digitalWrite(LED_PIN_WIFI, HIGH);
           led_on();
         }
       }
@@ -139,14 +139,14 @@ void Core2code( void * pvParameters ){
         if (millis() > (LED_WIFI_time + LED_WIFI_pulse)) {
           LED_WIFI_time = millis();
           LED_WIFI_ON = false;
-          digitalWrite(LED_PIN_WIFI, LOW);
+          //digitalWrite(LED_PIN_WIFI, LOW);
           led_off();
         }
       }
     }
     else
     {
-      digitalWrite(LED_PIN_WIFI, HIGH);
+      //digitalWrite(LED_PIN_WIFI, HIGH);
       led_on();
     }
    }//end main loop core 2

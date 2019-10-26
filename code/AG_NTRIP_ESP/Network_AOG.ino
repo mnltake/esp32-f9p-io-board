@@ -21,14 +21,16 @@ void WiFi_Start_STA() {
           {
            LED_WIFI_time = millis();
            LED_WIFI_ON = true;
-           digitalWrite(LED_PIN_WIFI, HIGH);
+           //digitalWrite(LED_PIN_WIFI, HIGH);
+           led_on();
           }
     }
     if (LED_WIFI_ON) {
       if (millis() > (LED_WIFI_time + (LED_WIFI_pulse >> 2))) {
         LED_WIFI_time = millis();
         LED_WIFI_ON = false;
-        digitalWrite(LED_PIN_WIFI, LOW);
+        //digitalWrite(LED_PIN_WIFI, LOW);
+        led_off();
       }
     }
   }    
