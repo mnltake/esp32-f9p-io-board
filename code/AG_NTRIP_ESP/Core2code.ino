@@ -66,15 +66,16 @@ void Core2code( void * pvParameters ){
 //			}
 			//LSM9DS1 Inclinometer
 			if (NtripSettings.AHRSbyte == 4) {
+
         if ( imu.gyroAvailable() )imu.readGyro();
         if ( imu.accelAvailable() )imu.readAccel();
         //if ( imu.magAvailable() ) imu.readMag();
         float degroll = atan2(imu.ay, imu.az);
         degroll  *= 2880.0 / PI; //180*16=2880  16 counts per degree (good for 0 - +/-30 degrees) 
-        //Serial.println(degroll, 4);
+        Serial.println(degroll, 4);
 				degroll -= roll_corr/17.7;  // 8500/480=17.708
 				rollK = int(degroll); //int 
-        //Serial.print(rollK);
+        Serial.print(rollK);
 			}
 			//Kalman filter
 			Pc = P + varProcess;
@@ -89,11 +90,17 @@ void Core2code( void * pvParameters ){
 
 			//Build Autosteer Packet: Send to agopenGPS **** you must send 10 Byte or 5 Int
 
-			int temp;
+
+
+
+			int a2,angle,temp;
 			//actual steer angle
       Adafruit_ADS1115 ads = Adafruit_ADS1115(0x48);
-      temp =  100* ads.readADC_Differential_2_3();
-      Serial.println(temp);
+      //a2 = ads.readADC_SingleEnded(2);
+      a2 =  ads.readADC_Differential_2_3();
+      //Serial.println(a2);
+      temp = map(a2,-21600,0,0,255);
+      //Serial.println(temp);
 			//temp = (100 * steerAngleActual);
 			IMUtoSend[2] = 5;
 			IMUtoSend[3] = (byte)(temp);

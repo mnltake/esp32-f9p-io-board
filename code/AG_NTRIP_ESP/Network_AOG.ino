@@ -5,10 +5,10 @@ void WiFi_Start_STA() {
 
   WiFi.mode(WIFI_STA);   //  Workstation
   
-  if (!WiFi.config(myip, gwip, mask, myDNS)) 
-   {
-    DBG("STA Failed to configure\n");
-   }
+ // if (!WiFi.config(myip, gwip, mask, myDNS)) 
+ //  {
+ //   DBG("STA Failed to configure\n");
+ //  }
   
   WiFi.begin(NtripSettings.ssid, NtripSettings.password);
   timeout = millis() + (NtripSettings.timeoutRouter * 1000);
@@ -289,16 +289,13 @@ void process_Request()
 
    if ( action == ACTION_SET_AHRS) {
 
-    NtripSettings.AHRSbyte = 0;
-    char tmp_string[20];
-    for (int i = 0; i < 4; i++) {
-      strcpy( tmp_string, "AHRS_TAG");
-      strcati( tmp_string, i);
-      strcat( tmp_string, "=");
-      if (Pick_Parameter_Zahl(tmp_string, HTML_String) ==1) NtripSettings.AHRSbyte = 1;  
-      if (Pick_Parameter_Zahl(tmp_string, HTML_String) ==2) NtripSettings.AHRSbyte = 2;  
-      if (Pick_Parameter_Zahl(tmp_string, HTML_String) ==3) NtripSettings.AHRSbyte = 3;  
-      if (Pick_Parameter_Zahl(tmp_string, HTML_String) ==4) NtripSettings.AHRSbyte = 4;  
+    for (int i = 0; i < 5; i++) {
+
+      if (Pick_Parameter_Zahl("AHRS_TAG=", HTML_String) ==0) NtripSettings.AHRSbyte = 0;
+      if (Pick_Parameter_Zahl("AHRS_TAG=", HTML_String) ==1) NtripSettings.AHRSbyte = 1;  
+      if (Pick_Parameter_Zahl("AHRS_TAG=", HTML_String) ==2) NtripSettings.AHRSbyte = 2;  
+      if (Pick_Parameter_Zahl("AHRS_TAG=", HTML_String) ==3) NtripSettings.AHRSbyte = 3;  
+      if (Pick_Parameter_Zahl("AHRS_TAG=", HTML_String) ==4) NtripSettings.AHRSbyte = 4;  
      }
 
     EEprom_write_all();
@@ -596,21 +593,27 @@ void make_HTML01() {
   strcat( HTML_String, "<tr>");
   strcat( HTML_String, "<td><b>Select installed</b></td>");
   strcat( HTML_String, "<td>");
-  for (int i = 0; i < 4; i++) {
-    if (i == 1)strcat( HTML_String, "<br>");
-    strcat( HTML_String, "<input type=\"checkbox\" name=\"AHRS_TAG");
+  for (int i = 0; i < 5; i++) {
+    strcat( HTML_String, "<tr>");
+    if (i == 0)strcat( HTML_String, "<br>");
+
+    strcat( HTML_String, "<td><input type = \"radio\" name=\"AHRS_TAG\" id=\"JZ");
     strcati( HTML_String, i);
-    strcat( HTML_String, "\" id = \"Part");
+    strcat( HTML_String, "\" value=\"");
     strcati( HTML_String, i);
-    strcat( HTML_String, "\" value = \"1\" ");
-    if (NtripSettings.AHRSbyte == i) strcat( HTML_String, "checked ");
-    strcat( HTML_String, "> ");
-    strcat( HTML_String, "<label for =\"Part");
+    strcat( HTML_String, "\"");
+    if ((NtripSettings.AHRSbyte == 0)   && i==0)strcat( HTML_String, " CHECKED");
+    if ((NtripSettings.AHRSbyte == 1)   && i==1)strcat( HTML_String, " CHECKED");
+    if ((NtripSettings.AHRSbyte == 2)   && i==2)strcat( HTML_String, " CHECKED");
+    if ((NtripSettings.AHRSbyte == 3)   && i==3)strcat( HTML_String, " CHECKED");
+    if ((NtripSettings.AHRSbyte == 4)   && i==4)strcat( HTML_String, " CHECKED");
+    strcat( HTML_String, "><label for=\"JZ");
     strcati( HTML_String, i);
     strcat( HTML_String, "\">");
     strcat( HTML_String, AHRS_tab[i]);
-    strcat( HTML_String, "</label>");
-    strcat( HTML_String, "<br>");
+    strcat( HTML_String, "</label><br></td>");
+    
+
   }
   strcat( HTML_String, "</td>");
   strcat( HTML_String, "<td><button style= \"width:100px\" name=\"ACTION\" value=\"");
