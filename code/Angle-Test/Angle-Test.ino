@@ -71,7 +71,7 @@ byte ethernetStatus = -1;
 // instances
 LSM9DS1 imu;
 
-<<<<<<< Updated upstream
+
 uint8_t getByteI2C(int address, int i2cregister) {
   Wire.beginTransmission(address);
   Wire.write(i2cregister);
@@ -88,8 +88,7 @@ uint8_t setByteI2C(int address, byte i2cregister, byte value) {
   return Wire.endTransmission();
 }
 
-=======
->>>>>>> Stashed changes
+
 void setup() {
   //Initialize serial and wait for port to open:
   Serial.begin(115200);
@@ -102,12 +101,10 @@ void setup() {
   // initialize PINs for VNHs
   pinMode(VNH_A_PWM, OUTPUT);
   pinMode(VNH_B_PWM, OUTPUT);
-<<<<<<< Updated upstream
+
   ledcSetup(0, 1500, 8);
   ledcAttachPin(VNH_A_PWM, 0);
-=======
 
->>>>>>> Stashed changes
   // analog inputs - set input to explicit disable any pullups
   pinMode(ANALOG_INPUT1, INPUT);
   pinMode(ANALOG_INPUT2, INPUT);
@@ -132,7 +129,7 @@ void setup() {
   gpio_pad_select_gpio(GPIO_NUM_35);
   gpio_set_direction(GPIO_NUM_35, GPIO_MODE_INPUT);
   pinMode(CAN_TX, OUTPUT);
-<<<<<<< Updated upstream
+
   Serial.println("");
   Serial.println("Configure the FXL6408");
         // direction (Input/Output)
@@ -194,7 +191,7 @@ void loop() {
         }
 
 
-=======
+
 
   Serial.println("Short J2 and pull up RS232");
   Serial.println("Press to continue");
@@ -250,21 +247,15 @@ void loop() {
 
 
         // read data
-        a0 = ads.readADC_SingleEnded(0);
-        a1 = ads.readADC_SingleEnded(1);
-        a2 = ads.readADC_SingleEnded(2);
-        a3 = ads.readADC_SingleEnded(3); 
-        diff = ads.readADC_Differential_2_3();
-          Serial.print(" a0: ");
-          Serial.print(a0);
-          Serial.print(" - a1: ");
-          Serial.print(a1);
+
+
+
+        a2 = ads.readADC_SingleEnded(2); 
+
+
           Serial.print(" - a2: ");
-          Serial.print(a2);
-          Serial.print(" - a3: ");
-          Serial.println(a3);
-          Serial.print(" - diff2_3: ");
-          Serial.println(diff);
->>>>>>> Stashed changes
+          Serial.println(a2);
+
+
         delay(500);
 }

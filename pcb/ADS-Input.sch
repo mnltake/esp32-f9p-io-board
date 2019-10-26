@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:mainPCB-cache
-EELAYER 29 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -129,12 +129,12 @@ Wire Wire Line
 	8100 2350 7550 2350
 Connection ~ 7550 2350
 $Comp
-L Device:L L1
+L Device:R R2
 U 1 1 5CA41C10
 P 8800 2050
-F 0 "L1" V 8990 2050 50  0000 C CNN
-F 1 "22u" V 8899 2050 50  0000 C CNN
-F 2 "Inductor_SMD:L_0805_2012Metric" H 8800 2050 50  0001 C CNN
+F 0 "R2" V 8990 2050 50  0000 C CNN
+F 1 "24" V 8899 2050 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 8800 2050 50  0001 C CNN
 F 3 "~" H 8800 2050 50  0001 C CNN
 	1    8800 2050
 	0    -1   -1   0   
@@ -230,7 +230,7 @@ Connection ~ 4900 3200
 Wire Wire Line
 	4900 3200 6000 3200
 $Comp
-L mainPCB-rescue:PTSM-Header-Horizontal-5-Connector_own J5
+L Connector_own:PTSM-Header-Horizontal-5 J5
 U 1 1 5CCCDB32
 P 1250 3300
 F 0 "J5" H 1250 3665 50  0000 C CNN

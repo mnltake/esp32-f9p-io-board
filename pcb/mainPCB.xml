@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="D">
   <design>
-    <source>C:\Users\minol\Git_local\esp32-f9p-io-board\pcb\mainPCB.sch</source>
-    <date>2019/10/24 13:23:37</date>
-    <tool>Eeschema (5.1.2)-2</tool>
+    <source>/home/jformann/Dokumente/Geschaeftlich/Projekte/AgOpenGPS/Platine-Steering/esp32-f9p-io-board/pcb/mainPCB.sch</source>
+    <date>Mo 03 Jun 2019 18:48:12 CEST</date>
+    <tool>Eeschema 5.0.2-bee76a0~70~ubuntu18.04.1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title>ESP32 - F9P IO-Board</title>
@@ -304,7 +304,7 @@
       <value>ESP32-WROOM-32</value>
       <footprint>RF_Module:ESP32-WROOM-32</footprint>
       <datasheet>https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf</datasheet>
-      <libsource lib="RF_Module" part="ESP32-WROOM-32" description="RF Module, ESP32-D0WDQ6 SoC, Wi-Fi 802.11b/g/n, Bluetooth, BLE, 32-bit, 2.7-3.6V, onboard antenna, SMD"/>
+      <libsource lib="RF_Module" part="ESP32-WROOM-32" description="RF Module, ESP32-D0WDQ6 SoC, Wi-Fi 802.11b/g/n, Bluetooth, BLE, 32-bit, 2.7-3.6V, SMD"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5CA0FF0F</tstamp>
     </comp>
@@ -391,7 +391,7 @@
         <field name="Manufacturer_Part_Number">FXL6408UMX</field>
         <field name="Mouser Part Number">512-FXL6408UMX</field>
       </fields>
-      <libsource lib="mainPCB-rescue" part="FXL6408UMX-Interface_Expansion_own" description=""/>
+      <libsource lib="Interface_Expansion_own" part="FXL6408UMX" description="Fully Configurable 8-Bit I2C-Controlled GPIO Expander"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5CE85D35</tstamp>
     </comp>
@@ -420,8 +420,8 @@
       <tstamp>5CF26AE1</tstamp>
     </comp>
     <comp ref="D2">
-      <value>LED/yellow</value>
-      <footprint>LED_SMD:LED_0805_2012Metric</footprint>
+      <value>LED/blue</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <sheetpath names="/" tstamps="/"/>
@@ -453,7 +453,7 @@
         <field name="Mouser Part Number">651-1814896</field>
         <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=651-1814896</field>
       </fields>
-      <libsource lib="mainPCB-rescue" part="PTSM-Header-Horizontal-7-Connector_own" description=""/>
+      <libsource lib="Connector_own" part="PTSM-Header-Horizontal-7" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5CC33CA3</tstamp>
     </comp>
@@ -469,7 +469,7 @@
         <field name="Mouser Part Number">651-1814883</field>
         <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=651-1814883</field>
       </fields>
-      <libsource lib="mainPCB-rescue" part="PTSM-Header-Horizontal-6-Connector_own" description=""/>
+      <libsource lib="Connector_own" part="PTSM-Header-Horizontal-6" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5CD05128</tstamp>
     </comp>
@@ -485,7 +485,7 @@
         <field name="Mouser Part Number">651-1836366</field>
         <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=651-1836366</field>
       </fields>
-      <libsource lib="mainPCB-rescue" part="CCA-Header-Horizontal-4-Connector_own" description=""/>
+      <libsource lib="Connector_own" part="CCA-Header-Horizontal-4" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5CE0099D</tstamp>
     </comp>
@@ -563,7 +563,7 @@
     </comp>
     <comp ref="D5">
       <value>LED/red</value>
-      <footprint>LED_SMD:LED_0805_2012Metric_Castellated</footprint>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <sheetpath names="/powerSupply/" tstamps="/5C428BD5/"/>
@@ -579,7 +579,7 @@
     </comp>
     <comp ref="D9">
       <value>LED/green</value>
-      <footprint>LED_SMD:LED_0805_2012Metric</footprint>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <sheetpath names="/powerSupply/" tstamps="/5C428BD5/"/>
@@ -592,7 +592,7 @@
       <fields>
         <field name="Field4">CUI Inc</field>
       </fields>
-      <libsource lib="mainPCB-rescue" part="V78E05-1000-SMT-TR-Regulator_Switching_own" description=""/>
+      <libsource lib="Regulator_Switching_own" part="V78E05-1000-SMT-TR" description=""/>
       <sheetpath names="/powerSupply/" tstamps="/5C428BD5/"/>
       <tstamp>5C999BE8</tstamp>
     </comp>
@@ -647,14 +647,14 @@
         <field name="Manufacturer_Part_Number">CP1SA-12V-Z</field>
         <field name="Mouser Part Number">769-CP1SA-12V-Z</field>
       </fields>
-      <libsource lib="mainPCB-rescue" part="CP1SA-12V-Z-Relay_own" description=""/>
+      <libsource lib="Relay_own" part="CP1SA-12V-Z" description="PANASONIC ELECTRIC WORKS - CP1SA-12V-Z - RELAY, AUTOMOTIVE, SPDT, 14VDC, 20A"/>
       <sheetpath names="/powerSupply/" tstamps="/5C428BD5/"/>
       <tstamp>5CB977B6</tstamp>
     </comp>
     <comp ref="U3">
       <value>VNH7070AS</value>
       <footprint>Package_SO:SOIC-16_3.9x9.9mm_P1.27mm</footprint>
-      <libsource lib="mainPCB-rescue" part="VNH7070AS-Driver_Motor_own" description=""/>
+      <libsource lib="Driver_Motor_own" part="VNH7070AS" description="The device is a full bridge motor driver intended for a wide range of automotive applications."/>
       <sheetpath names="/motorDriverA/" tstamps="/5C443F4F/"/>
       <tstamp>5C445805</tstamp>
     </comp>
@@ -822,14 +822,14 @@
         <field name="Mouser Part Number">651-1814870</field>
         <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=651-1814870</field>
       </fields>
-      <libsource lib="mainPCB-rescue" part="PTSM-Header-Horizontal-5-Connector_own" description=""/>
+      <libsource lib="Connector_own" part="PTSM-Header-Horizontal-5" description=""/>
       <sheetpath names="/ADS-Input/" tstamps="/5C531571/"/>
       <tstamp>5CCCDB32</tstamp>
     </comp>
     <comp ref="U5">
       <value>VNH7070AS</value>
       <footprint>Package_SO:SOIC-16_3.9x9.9mm_P1.27mm</footprint>
-      <libsource lib="mainPCB-rescue" part="VNH7070AS-Driver_Motor_own" description=""/>
+      <libsource lib="Driver_Motor_own" part="VNH7070AS" description="The device is a full bridge motor driver intended for a wide range of automotive applications."/>
       <sheetpath names="/motorDriverB/" tstamps="/5C9CCBB2/"/>
       <tstamp>5C445805</tstamp>
     </comp>
@@ -927,7 +927,7 @@
         <field name="Manufacturer_Name">JST (JAPAN SOLDERLESS TERMINALS)</field>
         <field name="Manufacturer_Part_Number">SM04B-SRSS-TB(LF)(SN)</field>
       </fields>
-      <libsource lib="mainPCB-rescue" part="SM04B-SRSS-TB(LF)(SN)-Connector_own" description=""/>
+      <libsource lib="Connector_own" part="SM04B-SRSS-TB(LF)(SN)" description="JST (JAPAN SOLDERLESS TERMINALS) - SM04B-SRSS-TB(LF)(SN) - CONNECTOR, HEADER, SMT, R/A, 1MM, 4WAY"/>
       <sheetpath names="/I2C/" tstamps="/5CA10EE5/"/>
       <tstamp>5CC11751</tstamp>
     </comp>
@@ -940,7 +940,7 @@
         <field name="Manufacturer_Name">JST (JAPAN SOLDERLESS TERMINALS)</field>
         <field name="Manufacturer_Part_Number">SM04B-SRSS-TB(LF)(SN)</field>
       </fields>
-      <libsource lib="mainPCB-rescue" part="SM04B-SRSS-TB(LF)(SN)-Connector_own" description=""/>
+      <libsource lib="Connector_own" part="SM04B-SRSS-TB(LF)(SN)" description="JST (JAPAN SOLDERLESS TERMINALS) - SM04B-SRSS-TB(LF)(SN) - CONNECTOR, HEADER, SMT, R/A, 1MM, 4WAY"/>
       <sheetpath names="/I2C/" tstamps="/5CA10EE5/"/>
       <tstamp>5CC131AA</tstamp>
     </comp>
@@ -1001,7 +1001,7 @@
         <field name="Mouser Part Number">579-ATA6561-GAQW-N</field>
         <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=579-ATA6561-GAQW-N</field>
       </fields>
-      <libsource lib="mainPCB-rescue" part="ATA6561-GAQW-N-Interface_CAN_LIN_own" description=""/>
+      <libsource lib="Interface_CAN_LIN_own" part="ATA6561-GAQW-N" description="MICROCHIP - ATA6561-GAQW-N - CAN TRANSCEIVER, 5MBPS, -40 TO 150DEG C"/>
       <sheetpath names="/canTransceiver/" tstamps="/5C9C5354/"/>
       <tstamp>5CACB7D0</tstamp>
     </comp>
@@ -1056,7 +1056,7 @@
         <field name="Mouser Part Number">651-1814841</field>
         <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=651-1814841</field>
       </fields>
-      <libsource lib="mainPCB-rescue" part="PTSM-Header-Horizontal-2-Connector_own" description=""/>
+      <libsource lib="Connector_own" part="PTSM-Header-Horizontal-2" description=""/>
       <sheetpath names="/canTransceiver/" tstamps="/5C9C5354/"/>
       <tstamp>5CC27296</tstamp>
     </comp>
@@ -1088,7 +1088,7 @@
       <value>CP2102N-A01-GQFN24</value>
       <footprint>Package_DFN_QFN:QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm</footprint>
       <datasheet>http://www.silabs.com/support%20documents/technicaldocs/cp2102n-datasheet.pdf</datasheet>
-      <libsource lib="Interface_USB" part="CP2102N-A01-GQFN24" description="USB to UART master bridge, QFN-24"/>
+      <libsource lib="Interface_USB" part="CP2102N-A01-GQFN24" description="USB to UART master bridge"/>
       <sheetpath names="/usbUart/" tstamps="/5C9C8AC0/"/>
       <tstamp>5CAF5FF2</tstamp>
     </comp>
@@ -1184,7 +1184,7 @@
         <field name="Mouser Part Number">771-BC817-40-T/R</field>
         <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=771-BC817-40-T%2FR</field>
       </fields>
-      <libsource lib="mainPCB-rescue" part="BC817-40,215-Transistor_BJT_own" description=""/>
+      <libsource lib="Transistor_BJT_own" part="BC817-40,215" description="BC817; BC817W; BC337 - 45 V, 500 mA NPN general-purpose transistors"/>
       <sheetpath names="/usbUart/" tstamps="/5C9C8AC0/"/>
       <tstamp>5CB02B3A</tstamp>
     </comp>
@@ -1200,7 +1200,7 @@
         <field name="Mouser Part Number">771-BC817-40-T/R</field>
         <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=771-BC817-40-T%2FR</field>
       </fields>
-      <libsource lib="mainPCB-rescue" part="BC817-40,215-Transistor_BJT_own" description=""/>
+      <libsource lib="Transistor_BJT_own" part="BC817-40,215" description="BC817; BC817W; BC337 - 45 V, 500 mA NPN general-purpose transistors"/>
       <sheetpath names="/usbUart/" tstamps="/5C9C8AC0/"/>
       <tstamp>5CB02C43</tstamp>
     </comp>
@@ -1231,7 +1231,7 @@
     <comp ref="U9">
       <value>VNH7070AS</value>
       <footprint>Package_SO:SOIC-16_3.9x9.9mm_P1.27mm</footprint>
-      <libsource lib="mainPCB-rescue" part="VNH7070AS-Driver_Motor_own" description=""/>
+      <libsource lib="Driver_Motor_own" part="VNH7070AS" description="The device is a full bridge motor driver intended for a wide range of automotive applications."/>
       <sheetpath names="/sheet5C9DA53F/" tstamps="/5C9DA551/"/>
       <tstamp>5C445805</tstamp>
     </comp>
@@ -1262,7 +1262,7 @@
         <field name="Manufacturer_Part_Number">CP1SA-12V-Z</field>
         <field name="Mouser Part Number">769-CP1SA-12V-Z</field>
       </fields>
-      <libsource lib="mainPCB-rescue" part="CP1SA-12V-Z-Relay_own" description=""/>
+      <libsource lib="Relay_own" part="CP1SA-12V-Z" description="PANASONIC ELECTRIC WORKS - CP1SA-12V-Z - RELAY, AUTOMOTIVE, SPDT, 14VDC, 20A"/>
       <sheetpath names="/Relais/" tstamps="/5CAF5163/"/>
       <tstamp>5CEBBD54</tstamp>
     </comp>
@@ -1276,7 +1276,7 @@
         <field name="Manufacturer_Name">ON Semiconductor</field>
         <field name="Manufacturer_Part_Number">NUD3124LT1G</field>
       </fields>
-      <libsource lib="mainPCB-rescue" part="NUD3124LT1G-GateDriver_own" description=""/>
+      <libsource lib="GateDriver_own" part="NUD3124LT1G" description="ON Semiconductor NUD3124LT1G, MOSFET Power Driver, 150mA, 3-Pin SOT-23"/>
       <sheetpath names="/Relais/" tstamps="/5CAF5163/"/>
       <tstamp>5CEBBF42</tstamp>
     </comp>
@@ -1321,7 +1321,7 @@
       <tstamp>5CBBAF87</tstamp>
     </comp>
     <comp ref="C35">
-      <value>100n</value>
+      <value>100n/16V</value>
       <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
@@ -1474,7 +1474,7 @@
         <field name="Manufacturer_Name">Intersil</field>
         <field name="Manufacturer_Part_Number">ICL3221EIVZ</field>
       </fields>
-      <libsource lib="mainPCB-rescue" part="ICL3221EIVZ-Interface_UART_own" description=""/>
+      <libsource lib="Interface_UART_own" part="ICL3221EIVZ" description="Intersil ICL3221EIVZ, Line Transceiver, EIA/TIA-232/ RS-232/ V.24/ V.28, 3.3 V, 5 V, 16-Pin TSSOP"/>
       <sheetpath names="/RS232/" tstamps="/5CE27366/"/>
       <tstamp>5CF77802</tstamp>
     </comp>
@@ -1753,6 +1753,152 @@
         <pin num="4" name="Pin_4" type="passive"/>
       </pins>
     </libpart>
+    <libpart lib="Connector_own" part="1814841">
+      <aliases>
+        <alias>PTSM-Header-Horizontal-2</alias>
+      </aliases>
+      <description>Phoenix Contact PTSM Series, 2.5mm Pitch 2 Way 1 Row Right Angle PCB Terminal Block, Solder Termination, 6A</description>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">1814841</field>
+        <field name="Footprint">SHDR2W90P0X250_1X2_670X750X500P</field>
+        <field name="Description">Phoenix Contact PTSM Series, 2.5mm Pitch 2 Way 1 Row Right Angle PCB Terminal Block, Solder Termination, 6A</field>
+        <field name="Height">5</field>
+        <field name="Mouser Part Number">651-1814841</field>
+        <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=651-1814841</field>
+        <field name="Manufacturer_Name">Phoenix Contact</field>
+        <field name="Manufacturer_Part_Number">1814841</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="BiDi"/>
+        <pin num="2" name="2" type="BiDi"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_own" part="1814870">
+      <aliases>
+        <alias>PTSM-Header-Horizontal-5</alias>
+      </aliases>
+      <description>Phoenix Contact PTSM Series, 2.5mm Pitch 5 Way 1 Row Right Angle PCB Terminal Block, Solder Termination, 6A</description>
+      <docs>https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1814870.pdf</docs>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">1814870</field>
+        <field name="Footprint">1814870</field>
+        <field name="Datasheet">https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1814870.pdf</field>
+        <field name="Description">Phoenix Contact PTSM Series, 2.5mm Pitch 5 Way 1 Row Right Angle PCB Terminal Block, Solder Termination, 6A</field>
+        <field name="Height">5</field>
+        <field name="Mouser Part Number">651-1814870</field>
+        <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=651-1814870</field>
+        <field name="Manufacturer_Name">Phoenix Contact</field>
+        <field name="Manufacturer_Part_Number">1814870</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="BiDi"/>
+        <pin num="2" name="2" type="BiDi"/>
+        <pin num="3" name="3" type="BiDi"/>
+        <pin num="4" name="4" type="BiDi"/>
+        <pin num="5" name="5" type="BiDi"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_own" part="1814883">
+      <aliases>
+        <alias>PTSM-Header-Horizontal-6</alias>
+      </aliases>
+      <description>Phoenix Contact PTSM Series, 2.5mm Pitch 6 Way 1 Row Right Angle PCB Terminal Block, Solder Termination, 6A</description>
+      <docs>https://www.arrow.com/en/products/1814883/phoenix-contact</docs>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">1814883</field>
+        <field name="Footprint">1814883</field>
+        <field name="Datasheet">https://www.arrow.com/en/products/1814883/phoenix-contact</field>
+        <field name="Description">Phoenix Contact PTSM Series, 2.5mm Pitch 6 Way 1 Row Right Angle PCB Terminal Block, Solder Termination, 6A</field>
+        <field name="Height">5</field>
+        <field name="Mouser Part Number">651-1814883</field>
+        <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=651-1814883</field>
+        <field name="Manufacturer_Name">Phoenix Contact</field>
+        <field name="Manufacturer_Part_Number">1814883</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="BiDi"/>
+        <pin num="2" name="2" type="BiDi"/>
+        <pin num="3" name="3" type="BiDi"/>
+        <pin num="4" name="4" type="BiDi"/>
+        <pin num="5" name="5" type="BiDi"/>
+        <pin num="6" name="6" type="BiDi"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_own" part="1814896">
+      <aliases>
+        <alias>PTSM-Header-Horizontal-7</alias>
+      </aliases>
+      <description>Pluggable Terminal Blocks PTSM 0,5/ 7-HH-2,5- THR WH R44</description>
+      <docs>https://www.arrow.com/en/products/1814896/phoenix-contact</docs>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">1814896</field>
+        <field name="Footprint">1814896</field>
+        <field name="Datasheet">https://www.arrow.com/en/products/1814896/phoenix-contact</field>
+        <field name="Description">Pluggable Terminal Blocks PTSM 0,5/ 7-HH-2,5- THR WH R44</field>
+        <field name="Height">5</field>
+        <field name="Mouser Part Number">651-1814896</field>
+        <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=651-1814896</field>
+        <field name="Manufacturer_Name">Phoenix Contact</field>
+        <field name="Manufacturer_Part_Number">1814896</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="BiDi"/>
+        <pin num="2" name="2" type="BiDi"/>
+        <pin num="3" name="3" type="BiDi"/>
+        <pin num="4" name="4" type="BiDi"/>
+        <pin num="5" name="5" type="BiDi"/>
+        <pin num="6" name="6" type="BiDi"/>
+        <pin num="7" name="7" type="BiDi"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_own" part="1836366">
+      <aliases>
+        <alias>CCA-Header-Horizontal-4</alias>
+      </aliases>
+      <description>Pluggable Terminal Blocks CCA 2,5/ 4-G P20 THR</description>
+      <docs>https://www.phoenixcontact.com/online/portal/us?uri=pxc-oc-itemdetail:pid=1836366&amp;library=usen&amp;pdfmode=direct&amp;pdflanguage=en#Dimensions</docs>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">1836366</field>
+        <field name="Footprint">1836366</field>
+        <field name="Datasheet">https://www.phoenixcontact.com/online/portal/us?uri=pxc-oc-itemdetail:pid=1836366&amp;library=usen&amp;pdfmode=direct&amp;pdflanguage=en#Dimensions</field>
+        <field name="Description">Pluggable Terminal Blocks CCA 2,5/ 4-G P20 THR</field>
+        <field name="Height">8.72</field>
+        <field name="Manufacturer_Name">Phoenix Contact</field>
+        <field name="Manufacturer_Part_Number">1836366</field>
+        <field name="Mouser Part Number">651-1836366</field>
+        <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=651-1836366</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="BiDi"/>
+        <pin num="2" name="2" type="BiDi"/>
+        <pin num="3" name="3" type="BiDi"/>
+        <pin num="4" name="4" type="BiDi"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_own" part="SM04B-SRSS-TB(LF)(SN)">
+      <description>JST (JAPAN SOLDERLESS TERMINALS) - SM04B-SRSS-TB(LF)(SN) - CONNECTOR, HEADER, SMT, R/A, 1MM, 4WAY</description>
+      <docs>http://www.jst-mfg.com/product/pdf/eng/eSH.pdf</docs>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">SM04B-SRSS-TB(LF)(SN)</field>
+        <field name="Footprint">SM04B-SRSS-TB(LFSN)</field>
+        <field name="Datasheet">http://www.jst-mfg.com/product/pdf/eng/eSH.pdf</field>
+        <field name="Description">JST (JAPAN SOLDERLESS TERMINALS) - SM04B-SRSS-TB(LF)(SN) - CONNECTOR, HEADER, SMT, R/A, 1MM, 4WAY</field>
+        <field name="Manufacturer_Name">JST (JAPAN SOLDERLESS TERMINALS)</field>
+        <field name="Manufacturer_Part_Number">SM04B-SRSS-TB(LF)(SN)</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="BiDi"/>
+        <pin num="2" name="2" type="BiDi"/>
+        <pin num="3" name="3" type="BiDi"/>
+        <pin num="4" name="4" type="BiDi"/>
+      </pins>
+    </libpart>
     <libpart lib="Device" part="C">
       <description>Unpolarized capacitor</description>
       <docs>~</docs>
@@ -1900,6 +2046,54 @@
         <pin num="3" name="~" type="passive"/>
       </pins>
     </libpart>
+    <libpart lib="Driver_Motor_own" part="VNH7070AS">
+      <description>The device is a full bridge motor driver intended for a wide range of automotive applications.</description>
+      <docs>https://www.st.com/resource/en/datasheet/vnh7070as.pdf</docs>
+      <footprints>
+        <fp>*SO*16*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">VNH7070AS</field>
+      </fields>
+      <pins>
+        <pin num="1" name="GNDA" type="power_in"/>
+        <pin num="2" name="OUTA" type="power_out"/>
+        <pin num="3" name="INA" type="input"/>
+        <pin num="4" name="VCC" type="power_in"/>
+        <pin num="5" name="VCC" type="power_in"/>
+        <pin num="6" name="INB" type="input"/>
+        <pin num="7" name="OUTB" type="power_out"/>
+        <pin num="8" name="GNDB" type="power_in"/>
+        <pin num="9" name="GNDB" type="power_in"/>
+        <pin num="10" name="OUTB" type="power_out"/>
+        <pin num="11" name="PWM" type="input"/>
+        <pin num="12" name="VCC" type="power_in"/>
+        <pin num="13" name="CS" type="output"/>
+        <pin num="14" name="SEL0" type="input"/>
+        <pin num="15" name="OUTA" type="power_out"/>
+        <pin num="16" name="GNDA" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="GateDriver_own" part="NUD3124LT1G">
+      <description>ON Semiconductor NUD3124LT1G, MOSFET Power Driver, 150mA, 3-Pin SOT-23</description>
+      <docs>https://www.mouser.com/datasheet/2/308/NUD3124-D-91887.pdf</docs>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">NUD3124LT1G</field>
+        <field name="Footprint">SOT95P237X100-3N</field>
+        <field name="Datasheet">https://www.mouser.com/datasheet/2/308/NUD3124-D-91887.pdf</field>
+        <field name="Description">ON Semiconductor NUD3124LT1G, MOSFET Power Driver, 150mA, 3-Pin SOT-23</field>
+        <field name="Height">1</field>
+        <field name="Manufacturer_Name">ON Semiconductor</field>
+        <field name="Manufacturer_Part_Number">NUD3124LT1G</field>
+      </fields>
+      <pins>
+        <pin num="1" name="GATE" type="BiDi"/>
+        <pin num="2" name="SOURCE" type="BiDi"/>
+        <pin num="3" name="DRAIN" type="BiDi"/>
+      </pins>
+    </libpart>
     <libpart lib="Interface" part="PCA9306">
       <description>Dual bidirectional I2C Bus and SMBus voltage level translator</description>
       <docs>http://www.ti.com/lit/ds/symlink/pca9306.pdf</docs>
@@ -1921,6 +2115,32 @@
         <pin num="6" name="SCL2" type="BiDi"/>
         <pin num="7" name="VREF2" type="power_in"/>
         <pin num="8" name="EN" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="Interface_CAN_LIN_own" part="ATA6561-GAQW-N">
+      <description>MICROCHIP - ATA6561-GAQW-N - CAN TRANSCEIVER, 5MBPS, -40 TO 150DEG C</description>
+      <docs>https://componentsearchengine.com/Datasheets/1/ATA6561-GAQW-N.pdf</docs>
+      <fields>
+        <field name="Reference">IC</field>
+        <field name="Value">ATA6561-GAQW-N</field>
+        <field name="Footprint">SOIC127P600X175-8N</field>
+        <field name="Datasheet">https://componentsearchengine.com/Datasheets/1/ATA6561-GAQW-N.pdf</field>
+        <field name="Description">MICROCHIP - ATA6561-GAQW-N - CAN TRANSCEIVER, 5MBPS, -40 TO 150DEG C</field>
+        <field name="Height">1.75</field>
+        <field name="Mouser Part Number">579-ATA6561-GAQW-N</field>
+        <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=579-ATA6561-GAQW-N</field>
+        <field name="Manufacturer_Name">Microchip</field>
+        <field name="Manufacturer_Part_Number">ATA6561-GAQW-N</field>
+      </fields>
+      <pins>
+        <pin num="1" name="TXD" type="BiDi"/>
+        <pin num="2" name="GND" type="BiDi"/>
+        <pin num="3" name="VCC" type="power_in"/>
+        <pin num="4" name="RXD" type="BiDi"/>
+        <pin num="5" name="VIO" type="input"/>
+        <pin num="6" name="CANL" type="BiDi"/>
+        <pin num="7" name="CANH" type="BiDi"/>
+        <pin num="8" name="STBY" type="input"/>
       </pins>
     </libpart>
     <libpart lib="Interface_Ethernet" part="LAN8720A">
@@ -1962,9 +2182,74 @@
         <pin num="25" name="VSS" type="power_in"/>
       </pins>
     </libpart>
+    <libpart lib="Interface_Expansion_own" part="FXL6408UMX">
+      <description>Fully Configurable 8-Bit I2C-Controlled GPIO Expander</description>
+      <docs>https://pt.mouser.com/datasheet/2/308/FXL6408-1301001.pdf</docs>
+      <fields>
+        <field name="Reference">IC</field>
+        <field name="Value">FXL6408UMX</field>
+        <field name="Footprint">QFN40P180X260X55-16N</field>
+        <field name="Datasheet">https://pt.mouser.com/datasheet/2/308/FXL6408-1301001.pdf</field>
+        <field name="Description">Fully Configurable 8-Bit I2C-Controlled GPIO Expander</field>
+        <field name="Height">0.55</field>
+        <field name="Mouser Part Number">512-FXL6408UMX</field>
+        <field name="Manufacturer_Name">ON Semiconductor</field>
+        <field name="Manufacturer_Part_Number">FXL6408UMX</field>
+      </fields>
+      <pins>
+        <pin num="1" name="/INT" type="BiDi"/>
+        <pin num="2" name="VDDIO" type="BiDi"/>
+        <pin num="3" name="GPIO7" type="BiDi"/>
+        <pin num="4" name="GPIO6" type="BiDi"/>
+        <pin num="5" name="GPIO5" type="BiDi"/>
+        <pin num="6" name="GPIO4" type="BiDi"/>
+        <pin num="7" name="GPIO3" type="BiDi"/>
+        <pin num="8" name="GPIO2" type="BiDi"/>
+        <pin num="9" name="ADDR" type="BiDi"/>
+        <pin num="10" name="/RST" type="BiDi"/>
+        <pin num="11" name="GPIO1" type="BiDi"/>
+        <pin num="12" name="GPIO0" type="BiDi"/>
+        <pin num="13" name="SCL" type="BiDi"/>
+        <pin num="14" name="SDA" type="BiDi"/>
+        <pin num="15" name="VCC" type="BiDi"/>
+        <pin num="16" name="GND" type="BiDi"/>
+      </pins>
+    </libpart>
+    <libpart lib="Interface_UART_own" part="ICL3221EIVZ">
+      <description>Intersil ICL3221EIVZ, Line Transceiver, EIA/TIA-232/ RS-232/ V.24/ V.28, 3.3 V, 5 V, 16-Pin TSSOP</description>
+      <docs>http://www.intersil.com/content/dam/Intersil/documents/icl3/icl3221e-22e-23e-32e-41e-43e.pdf</docs>
+      <fields>
+        <field name="Reference">IC</field>
+        <field name="Value">ICL3221EIVZ</field>
+        <field name="Footprint">SOP65P640X120-16N</field>
+        <field name="Datasheet">http://www.intersil.com/content/dam/Intersil/documents/icl3/icl3221e-22e-23e-32e-41e-43e.pdf</field>
+        <field name="Description">Intersil ICL3221EIVZ, Line Transceiver, EIA/TIA-232/ RS-232/ V.24/ V.28, 3.3 V, 5 V, 16-Pin TSSOP</field>
+        <field name="Height">1.2</field>
+        <field name="Manufacturer_Name">Intersil</field>
+        <field name="Manufacturer_Part_Number">ICL3221EIVZ</field>
+      </fields>
+      <pins>
+        <pin num="1" name="EN" type="BiDi"/>
+        <pin num="2" name="C1+" type="BiDi"/>
+        <pin num="3" name="V+" type="BiDi"/>
+        <pin num="4" name="C1-" type="BiDi"/>
+        <pin num="5" name="C2+" type="BiDi"/>
+        <pin num="6" name="C2-" type="BiDi"/>
+        <pin num="7" name="V-" type="BiDi"/>
+        <pin num="8" name="R1IN" type="BiDi"/>
+        <pin num="9" name="R1OUT" type="BiDi"/>
+        <pin num="10" name="INVALID" type="BiDi"/>
+        <pin num="11" name="T1IN" type="BiDi"/>
+        <pin num="12" name="FORCEON" type="BiDi"/>
+        <pin num="13" name="T1OUT" type="BiDi"/>
+        <pin num="14" name="GND" type="BiDi"/>
+        <pin num="15" name="VCC" type="BiDi"/>
+        <pin num="16" name="FORCEOFF" type="BiDi"/>
+      </pins>
+    </libpart>
     <libpart lib="Interface_USB" part="CP2102N-A01-GQFN24">
-      <description>USB to UART master bridge, QFN-24</description>
-      <docs>https://www.silabs.com/documents/public/data-sheets/cp2102n-datasheet.pdf</docs>
+      <description>USB to UART master bridge</description>
+      <docs>http://www.silabs.com/support%20documents/technicaldocs/cp2102n-datasheet.pdf</docs>
       <footprints>
         <fp>QFN*4x4mm*P0.5mm*</fp>
       </footprints>
@@ -2035,7 +2320,7 @@
       <aliases>
         <alias>ESP32-WROOM-32D</alias>
       </aliases>
-      <description>RF Module, ESP32-D0WDQ6 SoC, Wi-Fi 802.11b/g/n, Bluetooth, BLE, 32-bit, 2.7-3.6V, onboard antenna, SMD</description>
+      <description>RF Module, ESP32-D0WDQ6 SoC, Wi-Fi 802.11b/g/n, Bluetooth, BLE, 32-bit, 2.7-3.6V, SMD</description>
       <docs>https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf</docs>
       <footprints>
         <fp>ESP32?WROOM?32*</fp>
@@ -2114,6 +2399,50 @@
         <pin num="3" name="VI" type="power_in"/>
       </pins>
     </libpart>
+    <libpart lib="Regulator_Switching_own" part="V78E05-1000-SMT-TR">
+      <footprints>
+        <fp>SOP254P1140X825-10N</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">PS</field>
+        <field name="Value">V78E05-1000-SMT-TR</field>
+        <field name="Footprint">CONV_V78E05-1000-SMT-TR</field>
+        <field name="Datasheet">Manufacturer Recommendations</field>
+        <field name="Field4">CUI Inc</field>
+      </fields>
+      <pins>
+        <pin num="1" name="+VIN" type="input"/>
+        <pin num="2" name="+VIN" type="input"/>
+        <pin num="3" name="GND" type="power_in"/>
+        <pin num="4" name="+VOUT" type="output"/>
+        <pin num="5" name="+VOUT" type="output"/>
+        <pin num="6" name="V_ADJ" type="input"/>
+        <pin num="7" name="GND" type="power_in"/>
+        <pin num="10" name="ON/OFF" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="Relay_own" part="CP1SA-12V-Z">
+      <description>PANASONIC ELECTRIC WORKS - CP1SA-12V-Z - RELAY, AUTOMOTIVE, SPDT, 14VDC, 20A</description>
+      <docs>https://www.mouser.com/datasheet/2/315/cp-catalog-1299312.pdf</docs>
+      <fields>
+        <field name="Reference">K</field>
+        <field name="Value">CP1SA-12V-Z</field>
+        <field name="Footprint">CP1SA12VZ</field>
+        <field name="Datasheet">https://www.mouser.com/datasheet/2/315/cp-catalog-1299312.pdf</field>
+        <field name="Description">PANASONIC ELECTRIC WORKS - CP1SA-12V-Z - RELAY, AUTOMOTIVE, SPDT, 14VDC, 20A</field>
+        <field name="Height">10.5</field>
+        <field name="Mouser Part Number">769-CP1SA-12V-Z</field>
+        <field name="Manufacturer_Name">Panasonic</field>
+        <field name="Manufacturer_Part_Number">CP1SA-12V-Z</field>
+      </fields>
+      <pins>
+        <pin num="1" name="COM" type="BiDi"/>
+        <pin num="2" name="NO" type="BiDi"/>
+        <pin num="3" name="C_1" type="BiDi"/>
+        <pin num="4" name="C_2" type="BiDi"/>
+        <pin num="5" name="NC" type="BiDi"/>
+      </pins>
+    </libpart>
     <libpart lib="Sensor_Motion" part="LSM9DS1">
       <description>I2C SPI 9 axis IMU accelerometer gyroscope magnetometer</description>
       <docs>http://www.st.com/content/ccc/resource/technical/document/datasheet/1e/3f/2a/d6/25/eb/48/46/DM00103319.pdf/files/DM00103319.pdf/jcr:content/translations/en.DM00103319.pdf</docs>
@@ -2154,7 +2483,6 @@
     </libpart>
     <libpart lib="Switch" part="SW_Push">
       <description>Push button switch, generic, two pins</description>
-      <docs>~</docs>
       <fields>
         <field name="Reference">SW</field>
         <field name="Value">SW_Push</field>
@@ -2164,34 +2492,12 @@
         <pin num="2" name="2" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="mainPCB-rescue" part="ATA6561-GAQW-N-Interface_CAN_LIN_own">
-      <fields>
-        <field name="Reference">IC</field>
-        <field name="Value">ATA6561-GAQW-N-Interface_CAN_LIN_own</field>
-        <field name="Footprint">SOIC127P600X175-8N</field>
-        <field name="Datasheet">https://componentsearchengine.com/Datasheets/1/ATA6561-GAQW-N.pdf</field>
-        <field name="Description">MICROCHIP - ATA6561-GAQW-N - CAN TRANSCEIVER, 5MBPS, -40 TO 150DEG C</field>
-        <field name="Height">1.75</field>
-        <field name="Mouser Part Number">579-ATA6561-GAQW-N</field>
-        <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=579-ATA6561-GAQW-N</field>
-        <field name="Manufacturer_Name">Microchip</field>
-        <field name="Manufacturer_Part_Number">ATA6561-GAQW-N</field>
-      </fields>
-      <pins>
-        <pin num="1" name="TXD" type="BiDi"/>
-        <pin num="2" name="GND" type="BiDi"/>
-        <pin num="3" name="VCC" type="power_in"/>
-        <pin num="4" name="RXD" type="BiDi"/>
-        <pin num="5" name="VIO" type="input"/>
-        <pin num="6" name="CANL" type="BiDi"/>
-        <pin num="7" name="CANH" type="BiDi"/>
-        <pin num="8" name="STBY" type="input"/>
-      </pins>
-    </libpart>
-    <libpart lib="mainPCB-rescue" part="BC817-40,215-Transistor_BJT_own">
+    <libpart lib="Transistor_BJT_own" part="BC817-40,215">
+      <description>BC817; BC817W; BC337 - 45 V, 500 mA NPN general-purpose transistors</description>
+      <docs>https://componentsearchengine.com/Datasheets/1/BC817-40,215.pdf</docs>
       <fields>
         <field name="Reference">Q</field>
-        <field name="Value">BC817-40,215-Transistor_BJT_own</field>
+        <field name="Value">BC817-40,215</field>
         <field name="Footprint">SOT95P230X110-3N</field>
         <field name="Datasheet">https://componentsearchengine.com/Datasheets/1/BC817-40,215.pdf</field>
         <field name="Description">BC817; BC817W; BC337 - 45 V, 500 mA NPN general-purpose transistors</field>
@@ -2207,319 +2513,76 @@
         <pin num="3" name="~" type="BiDi"/>
       </pins>
     </libpart>
-    <libpart lib="mainPCB-rescue" part="CCA-Header-Horizontal-4-Connector_own">
-      <fields>
-        <field name="Reference">J</field>
-        <field name="Value">CCA-Header-Horizontal-4-Connector_own</field>
-        <field name="Footprint">1836366</field>
-        <field name="Datasheet">https://www.phoenixcontact.com/online/portal/us?uri=pxc-oc-itemdetail:pid=1836366&amp;library=usen&amp;pdfmode=direct&amp;pdflanguage=en#Dimensions</field>
-        <field name="Description">Pluggable Terminal Blocks CCA 2,5/ 4-G P20 THR</field>
-        <field name="Height">8.72</field>
-        <field name="Manufacturer_Name">Phoenix Contact</field>
-        <field name="Manufacturer_Part_Number">1836366</field>
-        <field name="Mouser Part Number">651-1836366</field>
-        <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=651-1836366</field>
-      </fields>
-      <pins>
-        <pin num="1" name="1" type="BiDi"/>
-        <pin num="2" name="2" type="BiDi"/>
-        <pin num="3" name="3" type="BiDi"/>
-        <pin num="4" name="4" type="BiDi"/>
-      </pins>
-    </libpart>
-    <libpart lib="mainPCB-rescue" part="CP1SA-12V-Z-Relay_own">
-      <fields>
-        <field name="Reference">K</field>
-        <field name="Value">CP1SA-12V-Z-Relay_own</field>
-        <field name="Footprint">CP1SA12VZ</field>
-        <field name="Datasheet">https://www.mouser.com/datasheet/2/315/cp-catalog-1299312.pdf</field>
-        <field name="Description">PANASONIC ELECTRIC WORKS - CP1SA-12V-Z - RELAY, AUTOMOTIVE, SPDT, 14VDC, 20A</field>
-        <field name="Height">10.5</field>
-        <field name="Mouser Part Number">769-CP1SA-12V-Z</field>
-        <field name="Manufacturer_Name">Panasonic</field>
-        <field name="Manufacturer_Part_Number">CP1SA-12V-Z</field>
-      </fields>
-      <pins>
-        <pin num="1" name="COM" type="BiDi"/>
-        <pin num="2" name="NO" type="BiDi"/>
-        <pin num="3" name="C_1" type="BiDi"/>
-        <pin num="4" name="C_2" type="BiDi"/>
-        <pin num="5" name="NC" type="BiDi"/>
-      </pins>
-    </libpart>
-    <libpart lib="mainPCB-rescue" part="FXL6408UMX-Interface_Expansion_own">
-      <fields>
-        <field name="Reference">IC</field>
-        <field name="Value">FXL6408UMX-Interface_Expansion_own</field>
-        <field name="Footprint">QFN40P180X260X55-16N</field>
-        <field name="Datasheet">https://pt.mouser.com/datasheet/2/308/FXL6408-1301001.pdf</field>
-        <field name="Description">Fully Configurable 8-Bit I2C-Controlled GPIO Expander</field>
-        <field name="Height">0.55</field>
-        <field name="Mouser Part Number">512-FXL6408UMX</field>
-        <field name="Manufacturer_Name">ON Semiconductor</field>
-        <field name="Manufacturer_Part_Number">FXL6408UMX</field>
-      </fields>
-      <pins>
-        <pin num="1" name="/INT" type="BiDi"/>
-        <pin num="2" name="VDDIO" type="BiDi"/>
-        <pin num="3" name="GPIO7" type="BiDi"/>
-        <pin num="4" name="GPIO6" type="BiDi"/>
-        <pin num="5" name="GPIO5" type="BiDi"/>
-        <pin num="6" name="GPIO4" type="BiDi"/>
-        <pin num="7" name="GPIO3" type="BiDi"/>
-        <pin num="8" name="GPIO2" type="BiDi"/>
-        <pin num="9" name="ADDR" type="BiDi"/>
-        <pin num="10" name="/RST" type="BiDi"/>
-        <pin num="11" name="GPIO1" type="BiDi"/>
-        <pin num="12" name="GPIO0" type="BiDi"/>
-        <pin num="13" name="SCL" type="BiDi"/>
-        <pin num="14" name="SDA" type="BiDi"/>
-        <pin num="15" name="VCC" type="BiDi"/>
-        <pin num="16" name="GND" type="BiDi"/>
-      </pins>
-    </libpart>
-    <libpart lib="mainPCB-rescue" part="ICL3221EIVZ-Interface_UART_own">
-      <fields>
-        <field name="Reference">IC</field>
-        <field name="Value">ICL3221EIVZ-Interface_UART_own</field>
-        <field name="Footprint">SOP65P640X120-16N</field>
-        <field name="Datasheet">http://www.intersil.com/content/dam/Intersil/documents/icl3/icl3221e-22e-23e-32e-41e-43e.pdf</field>
-        <field name="Description">Intersil ICL3221EIVZ, Line Transceiver, EIA/TIA-232/ RS-232/ V.24/ V.28, 3.3 V, 5 V, 16-Pin TSSOP</field>
-        <field name="Height">1.2</field>
-        <field name="Manufacturer_Name">Intersil</field>
-        <field name="Manufacturer_Part_Number">ICL3221EIVZ</field>
-      </fields>
-      <pins>
-        <pin num="1" name="EN" type="BiDi"/>
-        <pin num="2" name="C1+" type="BiDi"/>
-        <pin num="3" name="V+" type="BiDi"/>
-        <pin num="4" name="C1-" type="BiDi"/>
-        <pin num="5" name="C2+" type="BiDi"/>
-        <pin num="6" name="C2-" type="BiDi"/>
-        <pin num="7" name="V-" type="BiDi"/>
-        <pin num="8" name="R1IN" type="BiDi"/>
-        <pin num="9" name="R1OUT" type="BiDi"/>
-        <pin num="10" name="INVALID" type="BiDi"/>
-        <pin num="11" name="T1IN" type="BiDi"/>
-        <pin num="12" name="FORCEON" type="BiDi"/>
-        <pin num="13" name="T1OUT" type="BiDi"/>
-        <pin num="14" name="GND" type="BiDi"/>
-        <pin num="15" name="VCC" type="BiDi"/>
-        <pin num="16" name="FORCEOFF" type="BiDi"/>
-      </pins>
-    </libpart>
-    <libpart lib="mainPCB-rescue" part="NUD3124LT1G-GateDriver_own">
-      <fields>
-        <field name="Reference">U</field>
-        <field name="Value">NUD3124LT1G-GateDriver_own</field>
-        <field name="Footprint">SOT95P237X100-3N</field>
-        <field name="Datasheet">https://www.mouser.com/datasheet/2/308/NUD3124-D-91887.pdf</field>
-        <field name="Description">ON Semiconductor NUD3124LT1G, MOSFET Power Driver, 150mA, 3-Pin SOT-23</field>
-        <field name="Height">1</field>
-        <field name="Manufacturer_Name">ON Semiconductor</field>
-        <field name="Manufacturer_Part_Number">NUD3124LT1G</field>
-      </fields>
-      <pins>
-        <pin num="1" name="GATE" type="BiDi"/>
-        <pin num="2" name="SOURCE" type="BiDi"/>
-        <pin num="3" name="DRAIN" type="BiDi"/>
-      </pins>
-    </libpart>
-    <libpart lib="mainPCB-rescue" part="PTSM-Header-Horizontal-2-Connector_own">
-      <fields>
-        <field name="Reference">J</field>
-        <field name="Value">PTSM-Header-Horizontal-2-Connector_own</field>
-        <field name="Footprint">SHDR2W90P0X250_1X2_670X750X500P</field>
-        <field name="Description">Phoenix Contact PTSM Series, 2.5mm Pitch 2 Way 1 Row Right Angle PCB Terminal Block, Solder Termination, 6A</field>
-        <field name="Height">5</field>
-        <field name="Mouser Part Number">651-1814841</field>
-        <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=651-1814841</field>
-        <field name="Manufacturer_Name">Phoenix Contact</field>
-        <field name="Manufacturer_Part_Number">1814841</field>
-      </fields>
-      <pins>
-        <pin num="1" name="1" type="BiDi"/>
-        <pin num="2" name="2" type="BiDi"/>
-      </pins>
-    </libpart>
-    <libpart lib="mainPCB-rescue" part="PTSM-Header-Horizontal-5-Connector_own">
-      <fields>
-        <field name="Reference">J</field>
-        <field name="Value">PTSM-Header-Horizontal-5-Connector_own</field>
-        <field name="Footprint">1814870</field>
-        <field name="Datasheet">https://media.digikey.com/pdf/Data%20Sheets/Phoenix%20Contact%20PDFs/1814870.pdf</field>
-        <field name="Description">Phoenix Contact PTSM Series, 2.5mm Pitch 5 Way 1 Row Right Angle PCB Terminal Block, Solder Termination, 6A</field>
-        <field name="Height">5</field>
-        <field name="Mouser Part Number">651-1814870</field>
-        <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=651-1814870</field>
-        <field name="Manufacturer_Name">Phoenix Contact</field>
-        <field name="Manufacturer_Part_Number">1814870</field>
-      </fields>
-      <pins>
-        <pin num="1" name="1" type="BiDi"/>
-        <pin num="2" name="2" type="BiDi"/>
-        <pin num="3" name="3" type="BiDi"/>
-        <pin num="4" name="4" type="BiDi"/>
-        <pin num="5" name="5" type="BiDi"/>
-      </pins>
-    </libpart>
-    <libpart lib="mainPCB-rescue" part="PTSM-Header-Horizontal-6-Connector_own">
-      <fields>
-        <field name="Reference">J</field>
-        <field name="Value">PTSM-Header-Horizontal-6-Connector_own</field>
-        <field name="Footprint">1814883</field>
-        <field name="Datasheet">https://www.arrow.com/en/products/1814883/phoenix-contact</field>
-        <field name="Description">Phoenix Contact PTSM Series, 2.5mm Pitch 6 Way 1 Row Right Angle PCB Terminal Block, Solder Termination, 6A</field>
-        <field name="Height">5</field>
-        <field name="Mouser Part Number">651-1814883</field>
-        <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=651-1814883</field>
-        <field name="Manufacturer_Name">Phoenix Contact</field>
-        <field name="Manufacturer_Part_Number">1814883</field>
-      </fields>
-      <pins>
-        <pin num="1" name="1" type="BiDi"/>
-        <pin num="2" name="2" type="BiDi"/>
-        <pin num="3" name="3" type="BiDi"/>
-        <pin num="4" name="4" type="BiDi"/>
-        <pin num="5" name="5" type="BiDi"/>
-        <pin num="6" name="6" type="BiDi"/>
-      </pins>
-    </libpart>
-    <libpart lib="mainPCB-rescue" part="PTSM-Header-Horizontal-7-Connector_own">
-      <fields>
-        <field name="Reference">J</field>
-        <field name="Value">PTSM-Header-Horizontal-7-Connector_own</field>
-        <field name="Footprint">1814896</field>
-        <field name="Datasheet">https://www.arrow.com/en/products/1814896/phoenix-contact</field>
-        <field name="Description">Pluggable Terminal Blocks PTSM 0,5/ 7-HH-2,5- THR WH R44</field>
-        <field name="Height">5</field>
-        <field name="Mouser Part Number">651-1814896</field>
-        <field name="Mouser Price/Stock">https://www.mouser.com/Search/Refine.aspx?Keyword=651-1814896</field>
-        <field name="Manufacturer_Name">Phoenix Contact</field>
-        <field name="Manufacturer_Part_Number">1814896</field>
-      </fields>
-      <pins>
-        <pin num="1" name="1" type="BiDi"/>
-        <pin num="2" name="2" type="BiDi"/>
-        <pin num="3" name="3" type="BiDi"/>
-        <pin num="4" name="4" type="BiDi"/>
-        <pin num="5" name="5" type="BiDi"/>
-        <pin num="6" name="6" type="BiDi"/>
-        <pin num="7" name="7" type="BiDi"/>
-      </pins>
-    </libpart>
-    <libpart lib="mainPCB-rescue" part="SM04B-SRSS-TB(LF)(SN)-Connector_own">
-      <fields>
-        <field name="Reference">J</field>
-        <field name="Value">SM04B-SRSS-TB(LF)(SN)-Connector_own</field>
-        <field name="Footprint">SM04B-SRSS-TB(LFSN)</field>
-        <field name="Datasheet">http://www.jst-mfg.com/product/pdf/eng/eSH.pdf</field>
-        <field name="Description">JST (JAPAN SOLDERLESS TERMINALS) - SM04B-SRSS-TB(LF)(SN) - CONNECTOR, HEADER, SMT, R/A, 1MM, 4WAY</field>
-        <field name="Manufacturer_Name">JST (JAPAN SOLDERLESS TERMINALS)</field>
-        <field name="Manufacturer_Part_Number">SM04B-SRSS-TB(LF)(SN)</field>
-      </fields>
-      <pins>
-        <pin num="1" name="1" type="BiDi"/>
-        <pin num="2" name="2" type="BiDi"/>
-        <pin num="3" name="3" type="BiDi"/>
-        <pin num="4" name="4" type="BiDi"/>
-      </pins>
-    </libpart>
-    <libpart lib="mainPCB-rescue" part="V78E05-1000-SMT-TR-Regulator_Switching_own">
-      <footprints>
-        <fp>SOP254P1140X825-10N</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">PS</field>
-        <field name="Value">V78E05-1000-SMT-TR-Regulator_Switching_own</field>
-        <field name="Footprint">CONV_V78E05-1000-SMT-TR</field>
-        <field name="Datasheet">Manufacturer Recommendations</field>
-        <field name="フィールド4">CUI Inc</field>
-      </fields>
-      <pins>
-        <pin num="1" name="+VIN" type="input"/>
-        <pin num="2" name="+VIN" type="input"/>
-        <pin num="3" name="GND" type="power_in"/>
-        <pin num="4" name="+VOUT" type="output"/>
-        <pin num="5" name="+VOUT" type="output"/>
-        <pin num="6" name="V_ADJ" type="input"/>
-        <pin num="7" name="GND" type="power_in"/>
-        <pin num="10" name="ON/OFF" type="input"/>
-      </pins>
-    </libpart>
-    <libpart lib="mainPCB-rescue" part="VNH7070AS-Driver_Motor_own">
-      <footprints>
-        <fp>*SO*16*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">U</field>
-        <field name="Value">VNH7070AS-Driver_Motor_own</field>
-      </fields>
-      <pins>
-        <pin num="1" name="GNDA" type="power_in"/>
-        <pin num="2" name="OUTA" type="power_out"/>
-        <pin num="3" name="INA" type="input"/>
-        <pin num="4" name="VCC" type="power_in"/>
-        <pin num="5" name="VCC" type="power_in"/>
-        <pin num="6" name="INB" type="input"/>
-        <pin num="7" name="OUTB" type="power_out"/>
-        <pin num="8" name="GNDB" type="power_in"/>
-        <pin num="9" name="GNDB" type="power_in"/>
-        <pin num="10" name="OUTB" type="power_out"/>
-        <pin num="11" name="PWM" type="input"/>
-        <pin num="12" name="VCC" type="power_in"/>
-        <pin num="13" name="CS" type="output"/>
-        <pin num="14" name="SEL0" type="input"/>
-        <pin num="15" name="OUTA" type="power_out"/>
-        <pin num="16" name="GNDA" type="power_in"/>
-      </pins>
-    </libpart>
   </libparts>
   <libraries>
     <library logical="Analog_ADC">
-      <uri>C:\Program Files\KiCad\share\kicad\library/Analog_ADC.lib</uri>
+      <uri>/usr/share/kicad/library/Analog_ADC.lib</uri>
     </library>
     <library logical="Connector">
-      <uri>C:\Program Files\KiCad\share\kicad\library/Connector.lib</uri>
+      <uri>/usr/share/kicad/library/Connector.lib</uri>
     </library>
     <library logical="Connector_Generic">
-      <uri>C:\Program Files\KiCad\share\kicad\library/Connector_Generic.lib</uri>
+      <uri>/usr/share/kicad/library/Connector_Generic.lib</uri>
+    </library>
+    <library logical="Connector_own">
+      <uri>/home/jformann/Dokumente/Programme/kicad/libraries/Connector_own.lib</uri>
     </library>
     <library logical="Device">
-      <uri>C:\Program Files\KiCad\share\kicad\library/Device.lib</uri>
+      <uri>/usr/share/kicad/library/Device.lib</uri>
     </library>
     <library logical="Diode">
-      <uri>C:\Program Files\KiCad\share\kicad\library/Diode.lib</uri>
+      <uri>/usr/share/kicad/library/Diode.lib</uri>
+    </library>
+    <library logical="Driver_Motor_own">
+      <uri>/home/jformann/Dokumente/Programme/kicad/libraries/Driver_Motor_own.lib</uri>
+    </library>
+    <library logical="GateDriver_own">
+      <uri>/home/jformann/Dokumente/Programme/kicad/libraries/GateDriver_own.lib</uri>
     </library>
     <library logical="Interface">
-      <uri>C:\Program Files\KiCad\share\kicad\library/Interface.lib</uri>
+      <uri>/usr/share/kicad/library/Interface.lib</uri>
+    </library>
+    <library logical="Interface_CAN_LIN_own">
+      <uri>/home/jformann/Dokumente/Programme/kicad/libraries/Interface_CAN_LIN_own.lib</uri>
     </library>
     <library logical="Interface_Ethernet">
-      <uri>C:\Program Files\KiCad\share\kicad\library/Interface_Ethernet.lib</uri>
+      <uri>/usr/share/kicad/library/Interface_Ethernet.lib</uri>
+    </library>
+    <library logical="Interface_Expansion_own">
+      <uri>/home/jformann/Dokumente/Programme/kicad/libraries/Interface_Expansion_own.lib</uri>
+    </library>
+    <library logical="Interface_UART_own">
+      <uri>/home/jformann/Dokumente/Programme/kicad/libraries/Interface_UART_own.lib</uri>
     </library>
     <library logical="Interface_USB">
-      <uri>C:\Program Files\KiCad\share\kicad\library/Interface_USB.lib</uri>
+      <uri>/usr/share/kicad/library/Interface_USB.lib</uri>
     </library>
     <library logical="Mechanical">
-      <uri>C:\Program Files\KiCad\share\kicad\library/Mechanical.lib</uri>
+      <uri>/usr/share/kicad/library/Mechanical.lib</uri>
     </library>
     <library logical="Power_Protection">
-      <uri>C:\Program Files\KiCad\share\kicad\library/Power_Protection.lib</uri>
+      <uri>/usr/share/kicad/library/Power_Protection.lib</uri>
     </library>
     <library logical="RF_Module">
-      <uri>C:\Program Files\KiCad\share\kicad\library/RF_Module.lib</uri>
+      <uri>/usr/share/kicad/library/RF_Module.lib</uri>
     </library>
     <library logical="Regulator_Linear">
-      <uri>C:\Program Files\KiCad\share\kicad\library/Regulator_Linear.lib</uri>
+      <uri>/usr/share/kicad/library/Regulator_Linear.lib</uri>
+    </library>
+    <library logical="Regulator_Switching_own">
+      <uri>/home/jformann/Dokumente/Programme/kicad/libraries/Regulator_Switching_own.lib</uri>
+    </library>
+    <library logical="Relay_own">
+      <uri>/home/jformann/Dokumente/Programme/kicad/libraries/Relay_own.lib</uri>
     </library>
     <library logical="Sensor_Motion">
-      <uri>C:\Program Files\KiCad\share\kicad\library/Sensor_Motion.lib</uri>
+      <uri>/usr/share/kicad/library/Sensor_Motion.lib</uri>
     </library>
     <library logical="Switch">
-      <uri>C:\Program Files\KiCad\share\kicad\library/Switch.lib</uri>
+      <uri>/usr/share/kicad/library/Switch.lib</uri>
     </library>
-    <library logical="mainPCB-rescue">
-      <uri>C:\Users\minol\Git_local\esp32-f9p-io-board\pcb/mainPCB-rescue.lib</uri>
+    <library logical="Transistor_BJT_own">
+      <uri>/home/jformann/Dokumente/Programme/kicad/libraries/Transistor_BJT_own.lib</uri>
     </library>
   </libraries>
   <nets>
