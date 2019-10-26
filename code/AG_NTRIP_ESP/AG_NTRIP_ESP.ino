@@ -34,7 +34,7 @@ struct Storage{
                             // 1 = Transmission of NMEA Sentences to AOG via Ethernet-UDP
                             // 2 = Bluetooth attention: not possible if line useBluetooth = false
 
-  byte enableNtrip   = 2;   // 0 = NTRIP disabled
+  byte enableNtrip   = 1;   // 0 = NTRIP disabled
                             // 1 = ESP NTRIP Client enabled
                             // 2 = AOG NTRIP Client enabled (Port=2233)
   
@@ -42,6 +42,7 @@ struct Storage{
                             // 1 = BNO055 IMU installed
                             // 2 = MMA8452 Inclinometer installed
                             // 3 = BNO055 + MMA 8452 installed
+                            // 4 = LSM9DS1 Inclinometer installed
 }; Storage NtripSettings;
 
 //##########################################################################################################
@@ -52,24 +53,37 @@ boolean debugmode = false;
 #define useBluetooth  1  // 1= possibility to use bluetooth to transfer data to AOG later on, but needs lots of memory.
 
 // IO pins --------------------------------
-#define RX0      3//3
+#define RX0      3//3 usb
 #define TX0      1//1
 
-#define RX1     14  //17 simpleRTK TX(xbee) = RX(f9p)
-#define TX1     13  //27simpleRTK RX(xbee) = TX(f9p)
+#define F9P_RX     14  //  RX(f9p)
+#define F9P_TX     13  //  TX(f9p)
 
-#define RX2     16  
-#define TX2     15 
+#define RS232_RX     16  //RS232
+#define RS232_TX     15  //
 
 #define SDA     32  //I2C Pins
 #define SCL     33
 
-#define LED_PIN_WIFI   2   // WiFi Status LED
+#define LED_PIN_WIFI   2   // WiFi Status LED J2(RX)
 
+#define ANALOG_INPUT1 36
+#define ANALOG_INPUT2 39
+#define ANALOG_INPUT3 34
+#define I2C_SDA 32
+#define I2C_SCL 33
+#define VNH_A_PWM 4
+#define VNH_B_PWM 12
+#define F9P_RX 13
+#define F9P_TX 14
+#define RS232_RX 16
+#define RS232_TX 15
+#define UART_RX 2
+#define UART_TX 0
 //########## BNO055 adress 0x28 ADO = 0 set in BNO_ESP.h means ADO -> GND
 //########## MMA8451 adress 0x1D SAO = 0 set in MMA8452_AOG.h means SAO open (pullup!!)
 
-#define restoreDefault_PIN 35  // set to 1 during boot, to restore the default values
+#define restoreDefault_PIN 0  // set to 1 during boot, to restore the default values
 
 
 //libraries -------------------------------
@@ -78,9 +92,16 @@ boolean debugmode = false;
 #include <base64.h>
 #include "Network_AOG.h"
 #include "EEPROM.h"
+
+#include "Adafruit_ADS1015.h"
+#include "driver/gpio.h"
+#include "LSM9DS1_Registers.h"
+#include "SparkFunLSM9DS1.h"
+#include "LSM9DS1_Types.h"
+
 #include "BNO_ESP.h"
 #include "MMA8452_AOG.h"
-#include "BluetoothSerial.h"
+//#include "BluetoothSerial.h"
 
 // Declarations
 void DBG(String out, byte nl = 0);
@@ -142,10 +163,10 @@ char lastSentence[100]="";
 
 char strmBuf[512];         // rtcm Message Buffer
 
- //IMU, inclinometer variables
-  bool imu_initialized = 0;
-  int16_t roll = 0, roll_corr = 0;
-  uint16_t x_ , y_ , z_;
+//IMU, inclinometer variables
+bool imu_initialized = 0;
+int roll = 0, roll_corr = 0;
+unsigned int x_ , y_ , z_;
 
 //Array to send data back to AgOpenGPS
 byte GPStoSend[100]; 
@@ -159,30 +180,81 @@ WiFiClient ntripCl;
 WiFiClient client_page;
 AsyncUDP udpRoof;
 AsyncUDP udpNtrip;
-#if (useBluetooth)
-BluetoothSerial SerialBT;
-#endif
+LSM9DS1 imu;
+
+uint8_t getByteI2C(int address, int i2cregister) {
+  Wire.beginTransmission(address);
+  Wire.write(i2cregister);
+  Wire.endTransmission(false);
+  uint8_t state = Wire.requestFrom(address, 1, (int)true);
+  return Wire.read();
+}
 
 
+uint8_t setByteI2C(int address, byte i2cregister, byte value) {
+  Wire.beginTransmission(address);
+  Wire.write(i2cregister);
+  Wire.write(value);
+  return Wire.endTransmission();
+}
+
+void led_on(){
+  setByteI2C(0x43, 0x05, 0b00000100);
+}
+
+void led_off(){
+  setByteI2C(0x43, 0x05, 0b00000000);
+}
 // Setup procedure ------------------------
 void setup() {
+  Serial.begin(115200);
+  restoreEEprom();
+  Wire.begin(I2C_SDA, I2C_SCL, 400000);
   pinMode(restoreDefault_PIN, INPUT);  //
   
-  restoreEEprom();
-  Wire.begin(SDA, SCL, 400000);
+  //  Serial1.begin (NtripSettings.baudOut, SERIAL_8N1, F9P_RX, F9P_TX); 
+  if (debugmode) { Serial1.begin(115200, SERIAL_8N1, F9P_RX, F9P_TX); } //set new Baudrate
+  else { Serial1.begin(NtripSettings.baudOut, SERIAL_8N1, F9P_RX, F9P_TX); } //set new Baudrate
+  Serial2.begin(115200,SERIAL_8N1,RS232_RX,RS232_TX); 
+  
+  // Setup PINs for VNHs
+  pinMode(VNH_A_PWM, OUTPUT);
+  pinMode(VNH_B_PWM, OUTPUT);
+  ledcSetup(0, 1500, 8);
+  ledcAttachPin(VNH_A_PWM, 0);
+  
+  // analog inputs - set input to explicit disable any pullups
+  pinMode(ANALOG_INPUT1, INPUT);
+  pinMode(ANALOG_INPUT2, INPUT);
+  pinMode(ANALOG_INPUT3, INPUT);
+  analogReadResolution(10); // Default of 12 is not very linear. Recommended to use 10 or 11 depending on needed resolution.
+  analogSetAttenuation(ADC_11db); // Default is 11db which is very noisy. But needed for full scale range  Recommended to use 2.5 or 6.
 
-  //  Serial1.begin (NtripSettings.baudOut, SERIAL_8N1, RX1, TX1); 
-  if (debugmode) { Serial1.begin(115200, SERIAL_8N1, RX1, TX1); } //set new Baudrate
-  else { Serial1.begin(NtripSettings.baudOut, SERIAL_8N1, RX1, TX1); } //set new Baudrate
-  Serial2.begin(115200,SERIAL_8N1,RX2,TX2); 
+  // Serial for F9P, RS232, Light
+  gpio_pad_select_gpio(GPIO_NUM_13);
+  gpio_set_direction(GPIO_NUM_13, GPIO_MODE_OUTPUT);
+  
+  gpio_pad_select_gpio(GPIO_NUM_15);
+  gpio_pad_select_gpio(GPIO_NUM_16);
+  gpio_set_direction(GPIO_NUM_15, GPIO_MODE_OUTPUT);
+  gpio_set_direction(GPIO_NUM_16, GPIO_MODE_INPUT);
+  
+  gpio_pad_select_gpio(GPIO_NUM_2);
+  gpio_set_direction(GPIO_NUM_2, GPIO_MODE_OUTPUT);
 
-  Serial.begin(115200);
- #if (useBluetooth)
-     if(!SerialBT.begin("BT_GPS_ESP")){
-      DBG("\nAn error occurred initializing Bluetooth\n");
-     }
- #endif
+  // direction (Input/Output)
+  setByteI2C(0x43, 0x03, 0b11111110);
+  // disable High-Z on outputs
+  setByteI2C(0x43, 0x07, 0b00000001);
+  // en-/disable Pullup/downs
+  setByteI2C(0x43, 0x0B, 0b00000001);
+  // set direction of the pull
+  setByteI2C(0x43, 0x0D, 0b00000001);
 
+  // LED on
+  //setByteI2C(0x43, 0x05, 0b00000100);
+  // LED off
+  setByteI2C(0x43, 0x05, 0b00000000);
  pinMode(LED_PIN_WIFI, OUTPUT);
    
   //------------------------------------------------------------------------------------------------------------  

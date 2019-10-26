@@ -46,5 +46,5 @@ char sendNmea[3][10] = {"OFF", "AOG-UDP", "Bluetooth"};
 // Radiobutton Select if NTRIP Client is enabled. (Off to use only NMEA Transmission to AOG)
 char ntripOn_type[3][9] = {"OFF", "ESP-WiFi", "AOG-UDP"};
 
-char AHRS_tab[2][21] = {"IMU BNO055", "MMA8452 Inclinometer"};
+char AHRS_tab[4][21] = {"IMU BNO055", "MMA8452 Inclinometer","BNO055+MMA 8452","LSM9DS1 installed"};
 //---------------------------------------------------------------------

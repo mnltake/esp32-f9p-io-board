@@ -255,7 +255,7 @@ void process_Request()
     if (Pick_Parameter_Zahl("BAUDRATESET=", HTML_String)==5) NtripSettings.baudOut = 115200;   
     Serial.flush(); // wait for last transmitted data to be sent 
     Serial1.flush(); // wait for last transmitted data to be sent 
-	Serial1.begin(NtripSettings.baudOut, SERIAL_8N1, RX1, TX1);  //set new Baudrate
+	Serial1.begin(NtripSettings.baudOut, SERIAL_8N1, F9P_RX, F9P_TX);  //set new Baudrate
     DBG("\nRTCM/NMEA Baudrate: ");
     DBG(NtripSettings.baudOut, 1);
     EEprom_write_all();
@@ -291,11 +291,14 @@ void process_Request()
 
     NtripSettings.AHRSbyte = 0;
     char tmp_string[20];
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 4; i++) {
       strcpy( tmp_string, "AHRS_TAG");
       strcati( tmp_string, i);
       strcat( tmp_string, "=");
-      if (Pick_Parameter_Zahl(tmp_string, HTML_String) == 1)NtripSettings.AHRSbyte |= 1 << i;
+      if (Pick_Parameter_Zahl(tmp_string, HTML_String) ==1) NtripSettings.AHRSbyte = 1;  
+      if (Pick_Parameter_Zahl(tmp_string, HTML_String) ==2) NtripSettings.AHRSbyte = 2;  
+      if (Pick_Parameter_Zahl(tmp_string, HTML_String) ==3) NtripSettings.AHRSbyte = 3;  
+      if (Pick_Parameter_Zahl(tmp_string, HTML_String) ==4) NtripSettings.AHRSbyte = 4;  
      }
 
     EEprom_write_all();
@@ -593,20 +596,21 @@ void make_HTML01() {
   strcat( HTML_String, "<tr>");
   strcat( HTML_String, "<td><b>Select installed</b></td>");
   strcat( HTML_String, "<td>");
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < 4; i++) {
     if (i == 1)strcat( HTML_String, "<br>");
     strcat( HTML_String, "<input type=\"checkbox\" name=\"AHRS_TAG");
     strcati( HTML_String, i);
     strcat( HTML_String, "\" id = \"Part");
     strcati( HTML_String, i);
     strcat( HTML_String, "\" value = \"1\" ");
-    if (NtripSettings.AHRSbyte & 1 << i) strcat( HTML_String, "checked ");
+    if (NtripSettings.AHRSbyte == i) strcat( HTML_String, "checked ");
     strcat( HTML_String, "> ");
     strcat( HTML_String, "<label for =\"Part");
     strcati( HTML_String, i);
     strcat( HTML_String, "\">");
     strcat( HTML_String, AHRS_tab[i]);
     strcat( HTML_String, "</label>");
+    strcat( HTML_String, "<br>");
   }
   strcat( HTML_String, "</td>");
   strcat( HTML_String, "<td><button style= \"width:100px\" name=\"ACTION\" value=\"");

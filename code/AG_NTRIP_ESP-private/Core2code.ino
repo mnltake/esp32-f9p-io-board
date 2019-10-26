@@ -51,32 +51,31 @@ void Core2code( void * pvParameters ){
 			}
 
 			//MMA
-			if ((NtripSettings.AHRSbyte == 2)|(NtripSettings.AHRSbyte == 3)) {
-				// MMA8452 (1) Inclinometer
-				if (accelerometer.acc_initialized == 0) {
-					if (!accelerometer.init()) NtripSettings.AHRSbyte -= 2;
-				} // Try to Initialize MMA8452
-				accelerometer.getRawData(&x_, &y_, &z_);
-				roll = x_; //Conversion uint to int
-				if (roll > 8500)  roll = 8500;
-				if (roll < -8500) roll = -8500;
-				if (debugmode) DBG(roll);
-				roll -= roll_corr;  // 
-				rollK = map(roll, -8500, 8500, -480, 480); //16 counts per degree (good for 0 - +/-30 degrees) 
-			}
-			//LSM
+//			if ((NtripSettings.AHRSbyte == 2)|(NtripSettings.AHRSbyte == 3)) {
+//				// MMA8452 (1) Inclinometer
+//				if (accelerometer.acc_initialized == 0) {
+//					if (!accelerometer.init()) NtripSettings.AHRSbyte -= 2;
+//				} // Try to Initialize MMA8452
+//				accelerometer.getRawData(&x_, &y_, &z_);
+//				roll = x_; //Conversion uint to int
+//				if (roll > 8500)  roll = 8500;
+//				if (roll < -8500) roll = -8500;
+//				if (debugmode) DBG(roll);
+//				roll -= roll_corr;  // 
+//				rollK = map(roll, -8500, 8500, -480, 480); //16 counts per degree (good for 0 - +/-30 degrees) 
+//			}
+			//LSM9DS1 Inclinometer
 			if (NtripSettings.AHRSbyte == 4) {
-				// LSM9DS1 Inclinometer
+
         if ( imu.gyroAvailable() )imu.readGyro();
         if ( imu.accelAvailable() )imu.readAccel();
-        if ( imu.magAvailable() ) imu.readMag();
+        //if ( imu.magAvailable() ) imu.readMag();
         float degroll = atan2(imu.ay, imu.az);
-        degroll  *= 2880.0 / PI; //180*16=2880 16 counts per degree (good for 0 - +/-30 degrees) 
+        degroll  *= 2880.0 / PI; //180*16=2880  16 counts per degree (good for 0 - +/-30 degrees) 
         Serial.println(degroll, 4);
-				degroll -= roll_corr/17.7;  //
-        
+				degroll -= roll_corr/17.7;  // 8500/480=17.708
 				rollK = int(degroll); //int 
-       Serial.print(rollK);
+        Serial.print(rollK);
 			}
 			//Kalman filter
 			Pc = P + varProcess;
@@ -91,11 +90,20 @@ void Core2code( void * pvParameters ){
 
 			//Build Autosteer Packet: Send to agopenGPS **** you must send 10 Byte or 5 Int
 
-			int temp;
+
+
+
+			int a2,angle,temp;
 			//actual steer angle
+      Adafruit_ADS1115 ads = Adafruit_ADS1115(0x48);
+      //a2 = ads.readADC_SingleEnded(2);
+      a2 =  ads.readADC_Differential_2_3();
+      //Serial.println(a2);
+      temp = map(a2,-21600,0,0,255);
+      //Serial.println(temp);
 			//temp = (100 * steerAngleActual);
-			//IMUtoSend[2] = 5;
-			//IMUtoSend[3] = (byte)(temp);
+			IMUtoSend[2] = 5;
+			IMUtoSend[3] = (byte)(temp);
 
 			//imu heading --- * 16 in degrees
 			temp = Head;
@@ -124,6 +132,7 @@ void Core2code( void * pvParameters ){
           LED_WIFI_time = millis();
           LED_WIFI_ON = true;
           digitalWrite(LED_PIN_WIFI, HIGH);
+          led_on();
         }
       }
       if (LED_WIFI_ON) {
@@ -131,12 +140,14 @@ void Core2code( void * pvParameters ){
           LED_WIFI_time = millis();
           LED_WIFI_ON = false;
           digitalWrite(LED_PIN_WIFI, LOW);
+          led_off();
         }
       }
     }
     else
     {
       digitalWrite(LED_PIN_WIFI, HIGH);
+      led_on();
     }
    }//end main loop core 2
 }
@@ -191,7 +202,7 @@ while (Serial1.available())
               case 2:
               #if (useBluetooth)
                  for (byte n = 0; n < i; n++){  //print gpsBuffer to Bluetooth
-                    SerialBT.print((char)gpsBuffer[n]);
+                   //SerialBT.print((char)gpsBuffer[n]);
                   }
               #endif                
               break;
