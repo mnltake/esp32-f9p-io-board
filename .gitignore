@@ -8,3 +8,4 @@ pcb/*.kicad_pcb-bak
 code/AG_NTRIP_ESP/AG_NTRIP_ESP_private.ino
 
 code/AG_NTRIP_ESP-private/AG_NTRIP_ESP-private.ino
+pcb/fp-info-cache
