@@ -11,8 +11,8 @@ TaskHandle_t Core2;
   #define timeoutRouter  65         // Time (seconds) to wait for WIFI access, after that own Access Point starts      
                               
 struct Storage{    
-  char ssid[24]      = "yourSSID";          // WiFi network Client name
-  char password[24]  = "YourPassword";      // WiFi network password
+  char ssid[24]      = "0C8FFFE98F71-2G";          // WiFi network Client name
+  char password[24]  = "5530119582832";      // WiFi network password
 
   byte output_type = 2;       //set to 1  if you want to use Stering Motor + Cytron MD30C Driver
                               //set to 2  if you want to use Stering Motor + IBT 2  Driver
@@ -27,7 +27,7 @@ struct Storage{
   
   byte Inclino_type = 0;      // set to 1 if MMA8452 is installed
 
-  bool Invert_WAS   = 0;      // set to 1 to Change Direction of Wheel Angle Sensor - to + 
+  bool Invert_WAS   = 1;      // set to 1 to Change Direction of Wheel Angle Sensor - to + 
          
   byte SWEncoder    = 0;      // Steering Wheel ENCODER Installed
   byte pulseCountMax= 3;      // Switch off Autosteer after x Pulses from Steering wheel encoder 
@@ -82,18 +82,18 @@ unsigned int portDestination = 9999; // Port of AOG that listens
 #define RX2     16  
 #define TX2     15 
 
-#define Autosteer_Led  25
+#define Autosteer_Led  36
 #define PWM_PIN        4
-#define DIR_PIN        26
-#define LED_PIN_WIFI   33
-#define led1           14
-#define led2           15
+#define DIR_PIN        36
+#define LED_PIN_WIFI   36
+#define led1           36
+#define led2           36
 
-#define W_A_S           4
-#define WORKSW_PIN     37   
-#define STEERSW_PIN    38
-#define encAPin        35
-#define encBPin        34
+#define W_A_S           36
+#define WORKSW_PIN     36  
+#define STEERSW_PIN    36
+#define encAPin        36
+#define encBPin        36
 
 //libraries -------------------------------
 #include "Wire.h"

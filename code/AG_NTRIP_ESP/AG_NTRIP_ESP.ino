@@ -22,6 +22,7 @@ struct Storage{
   char ntripPassword[40]= "guest";    // Password
 
 
+
   byte sendGGAsentence = 0  ; // 0 = No Sentence will be sended
                             // 1 = fixed Sentence from GGAsentence below will be sended
                             // 2 = GGA from GPS will be sended
@@ -111,7 +112,7 @@ IPAddress gwip(192, 168, 3, 1);   // Gateway & Accesspoint IP
 IPAddress mask(255, 255, 255, 0);
 IPAddress myDNS(8, 8, 8, 8);      //optional
 
-unsigned int portMy = 5544;       //this is port of this module: Autosteer = 5577 IMU = 5566 GPS = 
+unsigned int portMy = 5577;       //5544this is port of this module: Autosteer = 5577 IMU = 5566 GPS = 
 unsigned int portAOG = 8888;      // port to listen for AOG
 unsigned int portMyNtrip = 2233;
 
@@ -165,10 +166,18 @@ unsigned int x_ , y_ , z_;
 
 //Array to send data back to AgOpenGPS
 byte GPStoSend[100]; 
-byte IMUtoSend[] = {0x7F,0xEE,0,0,0,0,0,0,0,0};
+//byte IMUtoSend[] = {0x7F,0xEE,0,0,0,0,0,0,0,0};
+byte IMUtoSend[] = {0x7F,0xFD,0,0,0,0,0,0,0,0};
+//byte IMUtoSend[] = {0,0,0,0,0,0,0,0,0,0};
 byte IMUtoSendLenght = 10; //lenght of array to AOG
-
+byte switchByte = 0;
 //steering variables
+int SteerPosZero  = 0;
+float steeringPositionZero = 0.0; 
+float steerSensorCounts=100;
+float distanceFromLine = 0.0, corr = 0; // not used
+bool Invert_WAS   = 0;      // set to 1 to Change Direction of Wheel Angle Sensor - to + 
+byte Inclino_type = 1;      // set to 1 if IMU is installed
 float steerAngleActual = 0;
 int steerPrevSign = 0, steerCurrentSign = 0; // the steering wheels angle currently and previous one
 int16_t isteerAngleSetPoint = 0; //the desired angle from AgOpen
@@ -177,7 +186,13 @@ long steeringPosition = 0, steeringPosition_corr = 0,actualSteerPos=0; //from st
 float steerAngleError = 0; //setpoint - actual
 float distanceError = 0; //
 volatile int  pulseACount = 0, pulseBCount = 0;; // Steering Wheel Encoder
-
+//integral values - **** change as required *****
+int maxIntErr = 200; //anti windup max
+int maxIntegralValue = 20; //max PWM value for integral PID component
+float Ko = 0.05f;  //overall gain  
+float Kp = 5.0f;  //proportional gain  
+float Ki = 0.001f;//integral gain
+float Kd = 1.0f;  //derivative gain 
 // Instances ------------------------------
 MMA8452 accelerometer;
 WiFiServer server(80);
@@ -186,6 +201,7 @@ WiFiClient client_page;
 AsyncUDP udpRoof;
 AsyncUDP udpNtrip;
 LSM9DS1 imu;
+Adafruit_ADS1115 ads;     
 
 uint8_t getByteI2C(int address, int i2cregister) {
   Wire.beginTransmission(address);

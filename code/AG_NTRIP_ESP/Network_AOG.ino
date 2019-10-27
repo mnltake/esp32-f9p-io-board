@@ -87,9 +87,9 @@ void UDPReceiveNtrip()
 void Send_UDP()
 {
     //Send Packet
-    //udp.listen(portMy);
-    udpRoof.writeTo(GPStoSend, sizeof(GPStoSend), ipDestination, portDestination );
-    //udp.listen(portAOG);
+    udpRoof.listen(portMy);
+    udpRoof.writeTo(IMUtoSend, sizeof(IMUtoSend), ipDestination, portDestination );
+    udpRoof.listen(portAOG);
 }
 //---------------------------------------------------------------------
 void WiFi_Traffic() {

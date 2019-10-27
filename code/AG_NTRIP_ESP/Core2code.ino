@@ -93,34 +93,77 @@ void Core2code( void * pvParameters ){
 
 
 
-			int a2,angle,temp;
+			
 			//actual steer angle
-      Adafruit_ADS1115 ads = Adafruit_ADS1115(0x48);
+      //Adafruit_ADS1115 ads = Adafruit_ADS1115(0x48);
+      steeringPosition = ads.readADC_Differential_2_3();    delay(1);    //ADS1115 Differential Mode 
+      steeringPosition += ads.readADC_Differential_2_3();   delay(1);    //Connect Sensor GND to A1
+      steeringPosition += ads.readADC_Differential_2_3();   delay(1);    //Connect Sensor Signal to A0
+      steeringPosition += ads.readADC_Differential_2_3();
+      steeringPosition = steeringPosition >> 2; //divide by 4
+      steeringPosition = map(steeringPosition,0,-20800,4500,-4500);
+      //Serial.println(steeringPosition);
+      
+      actualSteerPos=steeringPosition; // stored for >zero< Funktion
+      steeringPosition = ( steeringPosition -steeringPositionZero);   //center the steering position sensor  
+     //invert position, left must be minus
+     if (Invert_WAS) steeringPosition_corr = - steeringPosition;
+     else steeringPosition_corr = steeringPosition;
+     //convert position to steer angle
+     steerAngleActual = (float)(steeringPosition_corr) /   steerSensorCounts; 
+
+     //Serial.println(steerAngleActual);
+     if (Inclino_type ==1) steerAngleActual = steerAngleActual - (XeRoll * (Kd/800));     // add the roll
+     //else XeRoll=0;
+     //close enough to center, remove any correction
+     //if (distanceFromLine < 40 && distanceFromLine  -40) steerAngleSetPoint = 0;
+     if (distanceFromLine <= 40 && distanceFromLine >= -40) corr = 0;
+     else{
+      //use the integal value to adjust how much per cycle it increases
+      corr += Ki;
+      //provide a limit - the old max integral value
+      if (corr > maxIntegralValue) corr = maxIntegralValue;
+
+      //now add the correction to fool steering position
+      if (distanceFromLine > 40){
+         steerAngleSetPoint -= corr;
+      }else{
+         steerAngleSetPoint += corr;
+      }
+     }
+     
       //a2 = ads.readADC_SingleEnded(2);
-      a2 =  ads.readADC_Differential_2_3();
+      //a2 =  ads.readADC_Differential_2_3();
       //Serial.println(a2);
-      temp = map(a2,-21600,0,0,255);
-      //Serial.println(temp);
-			//temp = (100 * steerAngleActual);
-			IMUtoSend[2] = 5;
-			IMUtoSend[3] = (byte)(temp);
+      //temp = map(a2,-21600,0,0,255);
+      //Vehicle roll --- * 16 in degrees
+      //Build Autosteer Packet: Send to agopenGPS **** you must send 10 Byte or 5 Int
+  
+     int temp;
+      //actual steer angle
+      temp = (100 * steerAngleActual);
+      Serial.println(temp);
+      IMUtoSend[2] = (byte)(temp >> 8);
+      IMUtoSend[3] = (byte)(temp);
 
-			//imu heading --- * 16 in degrees
-			temp = Head;
-			IMUtoSend[4] = (byte)(temp >> 8);
-			IMUtoSend[5] = (byte)(temp);
+      //imu heading --- * 16 in degrees
+      temp = Head;
+      IMUtoSend[4] = (byte)(temp >> 8);
+      IMUtoSend[5] = (byte)(temp);
 
-			//Vehicle roll --- * 16 in degrees
-			temp = XeRoll;
-			IMUtoSend[6] = (byte)(temp >> 8);
-			IMUtoSend[7] = (byte)(temp);
+     //Vehicle roll --- * 16 in degrees
+     temp = XeRoll;
+     Serial.println(temp);
+     IMUtoSend[6] = (byte)(temp >> 8);
+     IMUtoSend[7] = (byte)(temp);
 
-			//switch byte
-			//IMUtoSend[8] = switchByte;
+     //switch byte
+     IMUtoSend[8] = switchByte;
 
-			//Build Autosteer Packet completed
-			//Send_UDP();  //transmit to AOG
-			udpRoof.writeTo(IMUtoSend, IMUtoSendLenght, ipDestination, portDestination);
+		 //Build Autosteer Packet completed
+		 //Send_UDP();  //transmit to AOG
+
+		 udpRoof.writeTo(IMUtoSend, sizeof(IMUtoSend), ipDestination, portDestination);
 
 
 		}//end of timed loop getting and sending IMU data
