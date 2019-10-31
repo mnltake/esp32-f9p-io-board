@@ -1,6 +1,7 @@
 void calcSteeringPID(void) 
  {
- 
+  Serial.print("steerAngleError");
+  Serial.println(steerAngleError);
   //Proportional
   pValue = steerSettings.Kp * steerAngleError *steerSettings.Ko;  
 
@@ -44,6 +45,9 @@ void motorDrive(void)
     case 4:
       motorDrive_IBT_Danfoss();
       break;
+    case 5:
+      motorDrive_VNH();
+      break;
     default:
       // if nothing else matches no Output
     break;
@@ -58,13 +62,13 @@ void motorDrive(void)
 void motorDrive_Cytron(void) 
   {    
     pwmDisplay = pwmDrive;
-    if (pwmDrive >= 0) ledcWrite(1, 255);  // channel 1 = DIR_PIN  //set the correct direction
+    if (pwmDrive >= 0) ledcWrite(1, 255);  // channel 1 = VNH_B_PWM  //set the correct direction
     else   
     {
-      ledcWrite(1, 0);  // channel 1 = DIR_PIN 
+      ledcWrite(1, 0);  // channel 1 = VNH_B_PWM 
       pwmDrive = -1 * pwmDrive;  
    }
-    ledcWrite(0, pwmDrive);  // channel 0 = PWM_PIN
+    ledcWrite(0, pwmDrive);  // channel 0 = VNH_A_PWM
   }
 
 
@@ -82,25 +86,25 @@ void motorDrive_IBT_Mot(void)
   
   if (pwmDrive > 0)
     {
-      ledcWrite(0, pwmDrive);  // channel 0 = PWM_PIN
+      ledcWrite(0, pwmDrive);  // channel 0 = VNH_A_PWM
       ledcWrite(1, 0);
-      //digitalWrite(DIR_PIN, LOW);
+      //digitalWrite(VNH_B_PWM, LOW);
     }
     
   if (pwmDrive <= 0)
     {
       pwmDrive = -1 * pwmDrive;  
-      ledcWrite(1, pwmDrive);  // channel 1 = DIR_PIN
+      ledcWrite(1, pwmDrive);  // channel 1 = VNH_B_PWM
       ledcWrite(0, 0);
-      //digitalWrite(PWM_PIN, LOW);
+      //digitalWrite(VNH_A_PWM, LOW);
     } 
   }
 
 //---------------------------------------------------------------------
 // Used with 2-Coil PWM Valves 
 // No coil powered = Center
-// Coil 1 steer right connected to PWM_PIN 11
-// Coil 2 steer left  connected to DIR_PIN 10
+// Coil 1 steer right connected to VNH_A_PWM 11
+// Coil 2 steer left  connected to VNH_B_PWM 10
 //---------------------------------------------------------------------
 void motorDrive_IBT_PWM(void)
  { 
@@ -110,17 +114,17 @@ void motorDrive_IBT_PWM(void)
   
   if (pwmDrive > 0)
     {
-      ledcWrite(0, pwmDrive);  // channel 0 = PWM_PIN
+      ledcWrite(0, pwmDrive);  // channel 0 = VNH_A_PWM
       ledcWrite(1, 0);
-      //digitalWrite(DIR_PIN, LOW);
+      //digitalWrite(VNH_B_PWM, LOW);
     }
     
   if (pwmDrive <= 0)
     {
       pwmDrive = -1 * pwmDrive;  
-      ledcWrite(1, pwmDrive);  // channel 1 = DIR_PIN
+      ledcWrite(1, pwmDrive);  // channel 1 = VNH_B_PWM
       ledcWrite(0, 0);
-      //digitalWrite(PWM_PIN, LOW);
+      //digitalWrite(VNH_A_PWM, LOW);
     }
  }  
 
@@ -134,13 +138,13 @@ void motorDrive_IBT_Danfoss(void)
     if (pwmDrive >  250) pwmDrive =  250; 
     if (pwmDrive < -250) pwmDrive = -250;
   
- /* if (steerEnable) digitalWrite(DIR_PIN, HIGH); // turn on /off Power
+ /* if (steerEnable) digitalWrite(VNH_B_PWM, HIGH); // turn on /off Power
   else 
     {
-      digitalWrite(DIR_PIN, LOW);  
+      digitalWrite(VNH_B_PWM, LOW);  
       pwmDrive=0;
     }*/
-  if (steerEnable) ledcWrite(1, 255);  // channel 1 = DIR_PIN // turn on /off Power
+  if (steerEnable) ledcWrite(1, 255);  // channel 1 = VNH_B_PWM // turn on /off Power
   else 
     {
       ledcWrite(1, 0);
@@ -151,7 +155,32 @@ void motorDrive_IBT_Danfoss(void)
     pwmDrive = pwmDrive / 4;  
     pwmOut = pwmDrive+ 128;  // add Center Pos.
     pwmDisplay = pwmOut;
-    ledcWrite(0, pwmOut);  // channel 0 = PWM_PIN
+    ledcWrite(0, pwmOut);  // channel 0 = VNH_A_PWM
   }
+//---------------------------------------------------------------------
+// VNH7070
 
+//---------------------------------------------------------------------
+void motorDrive_VNH(void) 
+  { 
+  {   
+   //if (steerEnable == false) pwmDrive=0;
+   
+    pwmDisplay = pwmDrive; 
+    //Serial.print("PWM");
+    //Serial.println(pwmDrive);
+  if (pwmDrive > 0)
+    {
+      ledcWrite(0, pwmDrive);  // channel 0 = VNH_A_PWM
+      setByteI2C(0x43, 0x05, 0b01000000); //out A
+    }
+    
+  if (pwmDrive <= 0)
+    {
+      pwmDrive = -1 * pwmDrive;  
+      ledcWrite(1, pwmDrive);  // channel 1 = VNH_B_PWM
+      setByteI2C(0x43, 0x05, 0b10000000); //outB
+    } 
+  }
+  }
  

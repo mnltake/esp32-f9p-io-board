@@ -1,4 +1,5 @@
 //---------------------------------------------------------------------
+
 void WiFi_Start_STA() {
   unsigned long timeout;
 
@@ -20,14 +21,16 @@ void WiFi_Start_STA() {
       if (millis() > (LED_WIFI_time + (LED_WIFI_pause >> 2))) {
         LED_WIFI_time = millis();
         LED_WIFI_ON = true;
-        digitalWrite(LED_PIN_WIFI, HIGH);
+        //digitalWrite(LED_PIN_WIFI, HIGH);
+        led_on();
        }
      }
     if (LED_WIFI_ON) {
       if (millis() > (LED_WIFI_time + (LED_WIFI_pulse >> 2))) {
         LED_WIFI_time = millis();
         LED_WIFI_ON = false;
-        digitalWrite(LED_PIN_WIFI, LOW);
+        //digitalWrite(LED_PIN_WIFI, LOW);
+        led_off();
       }
     }
   }
@@ -78,8 +81,13 @@ void UDP_Start()
      Serial.print("UDP Listening on IP: ");
      Serial.println(WiFi.localIP());
      udpSteerRecv();
-    } 
+    } else{
+      Serial.print("UDP Listening NG: ");
+    }
 }
+
+
+
 //---------------------------------------------------------------------
 void Send_UDP()
 {
@@ -334,7 +342,7 @@ void make_HTML01() {
   strcat( HTML_String, "<table>");
   set_colgroup(200, 300, 150, 0, 0);
 
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 6; i++) {
     strcat( HTML_String, "<tr>");
     if (i == 0)  strcat( HTML_String, "<td><b>Select your output type</b></td>");
     else strcat( HTML_String, "<td> </td>");
@@ -368,7 +376,7 @@ void make_HTML01() {
   strcat( HTML_String, "<table>");
   set_colgroup(200, 300, 150, 10, 0);
  
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 4; i++) {
     strcat( HTML_String, "<tr>");
     if (i == 0)  strcat( HTML_String, "<td><b>Select your Input type</b></td>");
     else strcat( HTML_String, "<td> </td>");
@@ -493,7 +501,7 @@ void make_HTML01() {
   strcat( HTML_String, "<table>");
   set_colgroup(200, 300, 150, 0, 0);
 
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < 3; i++) {
     strcat( HTML_String, "<tr>");
     if (i == 0)  strcat( HTML_String, "<td><b>Select your Inclinometer type</b></td>");
     else strcat( HTML_String, "<td> </td>");

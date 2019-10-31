@@ -16,8 +16,8 @@ void Core2code( void * pvParameters ){
  UDP_Start();  // start the UDP Client
 
   for(;;){
-    //digitalWrite(DIR_PIN, LOW);
-    //digitalWrite(DIR_PIN, HIGH);
+    //digitalWrite(VNH_B_PWM, LOW);
+    //digitalWrite(VNH_B_PWM, HIGH);
     //if (!steerEnable) 
     WiFi_Traffic();
     delay(10);  
@@ -28,18 +28,18 @@ void Core2code( void * pvParameters ){
       if (millis() > (LED_WIFI_time + LED_WIFI_pause)) {
         LED_WIFI_time = millis();
         LED_WIFI_ON = true;
-        digitalWrite(LED_PIN_WIFI, HIGH);
+        //digitalWrite(LED_PIN_WIFI, HIGH);
       }
     }
     if (LED_WIFI_ON) {
       if (millis() > (LED_WIFI_time + LED_WIFI_pulse)) {
         LED_WIFI_time = millis();
         LED_WIFI_ON = false;
-        digitalWrite(LED_PIN_WIFI, LOW);
+        //digitalWrite(LED_PIN_WIFI, LOW);
       }
     }
   }
-  else  digitalWrite(LED_PIN_WIFI, HIGH);
+  //else  digitalWrite(LED_PIN_WIFI, HIGH);
 
   
   }

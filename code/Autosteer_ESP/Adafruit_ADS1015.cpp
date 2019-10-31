@@ -368,4 +368,3 @@ int16_t Adafruit_ADS1015::getLastConversionResults()
     return (int16_t)res;
   }
 }
-

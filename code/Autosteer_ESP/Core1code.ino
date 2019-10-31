@@ -58,6 +58,20 @@ Serial.println(ads.getGain());
    rollK = map(roll,-8500,8500,-480,480); //16 counts per degree (good for 0 - +/-30 degrees) 
   }
 
+ if (steerSettings.Inclino_type ==2){
+   // LSM9DS1 (2) Inclinometer
+   imu.begin();
+   if ( imu.gyroAvailable() )imu.readGyro();
+   if ( imu.accelAvailable() )imu.readAccel();
+   //if ( imu.magAvailable() ) imu.readMag();
+   float degroll = atan2(imu.ay, imu.az);
+   degroll  *= 2880.0 / PI; //180*16=2880  16 counts per degree (good for 0 - +/-30 degrees) 
+   //Serial.println(degroll, 4);
+   degroll -= steerSettings.roll_corr;  // 
+   rollK = int(degroll); //int 
+ 
+ //16 counts per degree (good for 0 - +/-30 degrees) 
+  }
  //Kalman filter
     Pc = P + varProcess;
     G = Pc / (Pc + varRoll);
@@ -130,14 +144,24 @@ if (steerEnable != state_previous) Serial.println("Steer-Break: Encoder.."); // 
       steeringPosition += ads.readADC_Differential_0_1();   delay(1);    //Connect Sensor Signal to A0
       steeringPosition += ads.readADC_Differential_0_1();
       break;
-    default: // directly to arduino
+    case 3:  // ADS 1115 differential A3-5v A2-Singal
+      steeringPosition = ads.readADC_Differential_2_3();    delay(1);    //ADS1115 Differential Mode 
+      steeringPosition += ads.readADC_Differential_2_3();   delay(1);    //Connect Sensor 5V to A3
+      steeringPosition += ads.readADC_Differential_2_3();   delay(1);    //Connect Sensor Signal to A2
+      steeringPosition += ads.readADC_Differential_2_3();
+      break;
+   default: // directly to arduino
       steeringPosition = analogRead(W_A_S);    delay(1);
       steeringPosition += analogRead(W_A_S);    delay(1);
       steeringPosition += analogRead(W_A_S);    delay(1);
       steeringPosition += analogRead(W_A_S);
       break;
+
   }
     steeringPosition = steeringPosition >> 2; //divide by 4
+    if (steerSettings.input_type == 3){ //map Raw to -45 +45degree
+      steeringPosition = map(steeringPosition,steeringPositionRawMim,steeringPositionRawMax,-4500,4500);
+    }
     actualSteerPos=steeringPosition; // stored for >zero< Funktion
     steeringPosition = ( steeringPosition -steerSettings.steeringPositionZero);   //center the steering position sensor  
     
@@ -147,7 +171,7 @@ if (steerEnable != state_previous) Serial.println("Steer-Break: Encoder.."); // 
     //convert position to steer angle
     steerAngleActual = (float)(steeringPosition_corr) /   steerSettings.steerSensorCounts; 
 
- if (steerSettings.Inclino_type ==1) steerAngleActual = steerAngleActual - (XeRoll * (steerSettings.Kd/800));     // add the roll
+ if (steerSettings.Inclino_type > 0 ) steerAngleActual = steerAngleActual - (XeRoll * (steerSettings.Kd/800));     // add the roll
  else XeRoll=0;
 
    //close enough to center, remove any correction
@@ -170,7 +194,7 @@ if (steerEnable != state_previous) Serial.println("Steer-Break: Encoder.."); // 
         {
          steerAngleSetPoint += corr;
         }
-}
+    }
  
  //Build Autosteer Packet: Send to agopenGPS **** you must send 10 Byte or 5 Int
   
@@ -222,6 +246,7 @@ Send_UDP();  //transmit to AOG
   { 
   case 0: 
     steerEnable = digitalRead(STEERSW_PIN);
+    Serial.println(steerEnable);
     break;
   case 1:
     steerEnable = !digitalRead(STEERSW_PIN);
@@ -232,9 +257,10 @@ Send_UDP();  //transmit to AOG
     if (tempvalue > 3200) { steerEnable = true; }
     break;
   } 
-  
+  //Serial.println(steerAngleSetPoint);
   if (watchdogTimer < 18 )
     {   
+
       steerAngleError = steerAngleActual - steerAngleSetPoint;   //calculate the steering error 
       calcSteeringPID();   //do the pid     
       motorDrive();       //out to motors the pwm value     
@@ -242,8 +268,8 @@ Send_UDP();  //transmit to AOG
   else
     {
       //we've lost the comm to AgOpenGPS
-        state_previous=steerEnable;   // Debug only
-      steerEnable=false;
+      state_previous=steerEnable;   // Debug only
+      steerEnable= false;
         if (steerEnable != state_previous) Serial.println("Steer-Break: WDT runs out");    // Debug only
       pwmDrive = 0; //turn off steering motor
       motorDrive(); //out to motors the pwm value   
@@ -262,8 +288,10 @@ Send_UDP();  //transmit to AOG
 
 
 // Subs --------------------------------------
+// recv from AOG steerAngleSetPoint 
 void udpSteerRecv()
 { //callback when received packets
+Serial.println("<--");    
   udp.onPacket([](AsyncUDPPacket packet) 
    {
       for (int i = 0; i < 10; i++) 
@@ -290,6 +318,7 @@ void udpSteerRecv()
          isteerAngleSetPoint = ((data[6] << 8 | data[7])); //high low bytes 
          steerAngleSetPoint = (float)isteerAngleSetPoint * 0.01;  
 
+
         //auto Steer is off if 32020,Speed is too slow, Wheelencoder above Max
         if (distanceFromLine == 32020 | speeed < 1 | (pulseACount+pulseBCount >= steerSettings.pulseCountMax && pulseACount>0 && pulseBCount>0))
           { 
@@ -299,6 +328,7 @@ void udpSteerRecv()
             
             watchdogTimer = 20;//turn off steering motor
             digitalWrite(Autosteer_Led, LOW); //turn LED off
+            //led_off();
           }
          else          //valid conditions to turn on autosteer
           {
@@ -307,19 +337,23 @@ void udpSteerRecv()
             if (steerEnable == true)
               {
                 digitalWrite(Autosteer_Led, HIGH);  //turn LED on 
+                //led_on();
                 watchdogTimer = 0;  //reset watchdog 
               }
             else
               {
                 digitalWrite(Autosteer_Led, LOW);  //turn LED off 
+                //led_off();
                 watchdogTimer = 20;  // turn off steering
               }
           }
-      /*    
+   
+      //steerEnable=true;    //debug
+       /*
       Serial.print(steerAngleActual);   //the pwm value to solenoids or motor
       Serial.print(",");
       Serial.println(XeRoll);
-       */
+      */
       UDP_data_time = millis();
        }
 
@@ -330,7 +364,11 @@ void udpSteerRecv()
       steerSettings.Ki = (float)data[3] * 0.001;   // read Ki from AgOpenGPS
       steerSettings.Kd = (float)data[4] * 1.0;   // read Kd from AgOpenGPS
       steerSettings.Ko = (float)data[5] * 0.1;   // read Ko from AgOpenGPS
+      if (steerSettings.input_type == 3){ //map Raw to -45 +45degree
+       steerSettings.steeringPositionZero = (steerSettings.SteerPosZero) + data[6];//read steering zero offset  
+      }else{
       steerSettings.steeringPositionZero = (steerSettings.SteerPosZero-127) + data[6];//read steering zero offset  
+      }
       steerSettings.minPWMValue = data[7]; //read the minimum amount of PWM for instant on
       maxIntegralValue = data[8]*0.1; //
       steerSettings.steerSensorCounts = data[9]; //sent as 10 times the setting displayed in AOG
@@ -338,12 +376,14 @@ void udpSteerRecv()
       
       for (int i = 0; i < 10; i++) 
        {
-        Serial.print(data[i],HEX); Serial.print("\t"); } Serial.println("<--");
+        
+       Serial.print(data[i],HEX); Serial.print("\t");
        }
 
+       }
+   
        });  // end of onPacket call
 }
-
 #if (useOLED_Display)
 //--------------------------------------------
 void draw_Sensor() {

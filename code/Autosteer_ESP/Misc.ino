@@ -1,3 +1,27 @@
+uint8_t getByteI2C(int address, int i2cregister) {
+  Wire.beginTransmission(address);
+  Wire.write(i2cregister);
+  Wire.endTransmission(false);
+  uint8_t state = Wire.requestFrom(address, 1, (int)true);
+  return Wire.read();
+}
+
+
+uint8_t setByteI2C(int address, byte i2cregister, byte value) {
+  Wire.beginTransmission(address);
+  Wire.write(i2cregister);
+  Wire.write(value);
+  return Wire.endTransmission();
+}
+
+void led_on(){
+  setByteI2C(0x43, 0x05, 0b00000100);
+}
+
+void led_off(){
+  setByteI2C(0x43, 0x05, 0b00000000);
+}
+
 void SetRelays(void)
  {
     if (bitRead(relay,0)) digitalWrite(led1, HIGH);
@@ -31,9 +55,12 @@ void SetRelays(void)
 //--------------------------------------------------------------
 void restoreEEprom(){
   //byte get_state  = digitalRead(restoreDefault_PIN);
-  byte get_state = false;
-  
-  if (EEprom_empty_check()==1 || get_state) { //first start?
+
+  byte get_state = getByteI2C(0x43, 0x0F);//setupSW1
+  get_state &= 0b00000001;
+   
+  if (EEprom_empty_check()==1 || !get_state) { //first start?
+    Serial.println("EEprom write default data");
     EEprom_write_all();     //write default data
    }
   if (EEprom_empty_check()==2) { //data available

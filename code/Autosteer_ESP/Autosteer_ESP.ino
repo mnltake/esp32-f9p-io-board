@@ -11,21 +11,23 @@ TaskHandle_t Core2;
   #define timeoutRouter  65         // Time (seconds) to wait for WIFI access, after that own Access Point starts      
                               
 struct Storage{    
-  char ssid[24]      = "0C8FFFE98F71-2G";          // WiFi network Client name
-  char password[24]  = "5530119582832";      // WiFi network password
+  char ssid[24]      = "*********";          // WiFi network Client name
+  char password[24]  = "*********";      // WiFi network password
 
-  byte output_type = 2;       //set to 1  if you want to use Stering Motor + Cytron MD30C Driver
+  byte output_type = 5;       //set to 1  if you want to use Stering Motor + Cytron MD30C Driver
                               //set to 2  if you want to use Stering Motor + IBT 2  Driver
                               //set to 3  if you want to use IBT 2  Driver + PWM 2-Coil Valve
                               //set to 4  if you want to use  IBT 2  Driver + Danfoss Valve PVE A/H/M
-                              
-  byte input_type  = 2;       //0 = No ADS installed, Wheel Angle Sensor connected directly to ESP at GPIO 4 (attention 3,3V only)
+                              //set to 5  if you want to use  VNH **
+  byte input_type  = 3;       //0 = No ADS installed, Wheel Angle Sensor connected directly to ESP at GPIO 4 (attention 3,3V only)
                               //1 = Single Mode of ADS1115 - Sensor Signal at A0 (ADS)
                               //2 = Differential Mode - Connect Sensor GND to A1, Signal to A0
+                              //3 = Differential Mode - Connect Sensor 5V to A3, Signal to A2 **
 
   byte IMU_type     = 0;      // set to 1 to enable BNO055 IMU
   
-  byte Inclino_type = 0;      // set to 1 if MMA8452 is installed
+  byte Inclino_type = 2;      // set to 1 if MMA8452 is installed
+                              // set to 2 if LSM9DS1 is installed **
 
   bool Invert_WAS   = 1;      // set to 1 to Change Direction of Wheel Angle Sensor - to + 
          
@@ -34,7 +36,7 @@ struct Storage{
   
   int SteerPosZero  = 512;
 
-  byte SteerSwitchType = 2;   //0 = enable = switch high (3,3V) //1 = enable = switch low(GND) //2 = toggle = button to low(GND)
+  byte SteerSwitchType = 1;   //0 = enable = switch high (3,3V) //1 = enable = switch low(GND) //2 = toggle = button to low(GND)
                               //3 = enable = button to high (3,3V), disable = button to low (GND), neutral = 1,65V
   
   byte WorkSW_mode = 1;       // 0 = disabled   // 1 = digital ON/OFF // 2 = analog Value 0...4095 (0 - 3,3V)
@@ -45,11 +47,11 @@ struct Storage{
   //##########################################################################################################
   //### End of Setup Zone ####################################################################################
   //##########################################################################################################
-  float Ko = 0.05f;  //overall gain  
+  float Ko = 0.5f;  //overall gain  
   float Kp = 5.0f;  //proportional gain  
   float Ki = 0.001f;//integral gain
   float Kd = 1.0f;  //derivative gain 
-  float steeringPositionZero = 13000;  byte minPWMValue=10;
+  float steeringPositionZero = 0;  byte minPWMValue=10;
   int maxIntegralValue=20;//max PWM value for integral PID component
   float steerSensorCounts=100;  int roll_corr = 0;
 };  Storage steerSettings;
@@ -75,27 +77,36 @@ unsigned int portDestination = 9999; // Port of AOG that listens
 
 
 // IO pins --------------------------------
-#define SDA     32  //I2C Pins
-#define SCL     33
-#define RX1     14  
-#define TX1     13  
-#define RX2     16  
-#define TX2     15 
+#define RX0      3//3 usb
+#define TX0      1//1
+//#define ANALOG_INPUT1 36
+//#define ANALOG_INPUT2 39
+//#define ANALOG_INPUT3 34
+#define I2C_SDA 32
+#define I2C_SCL 33
+#define VNH_A_PWM 4
+#define VNH_B_PWM 12
+#define F9P_RX 14
+#define F9P_TX 13
+#define RS232_RX 16
+#define RS232_TX 15
+#define UART_RX 2
+#define UART_TX 0
 
-#define Autosteer_Led  36
-#define PWM_PIN        4
-#define DIR_PIN        36
-#define LED_PIN_WIFI   36
-#define led1           36
-#define led2           36
+#define Autosteer_Led  2
+#define LED_PIN_WIFI   2
+#define led1           2
+#define led2           2
 
-#define W_A_S           36
-#define WORKSW_PIN     36  
-#define STEERSW_PIN    36
-#define encAPin        36
-#define encBPin        36
+#define W_A_S           34  //ANALOG_INPUT3 34
+#define WORKSW_PIN     39  //ANALOG_INPUT2 39
+#define STEERSW_PIN    36  //ANALOG_INPUT1036
+//#define encAPin        34
+//#define encBPin        36
 
 //libraries -------------------------------
+#include <WiFi.h>
+
 #include "Wire.h"
 #include "Network_AOG.h"
 #if (useOLED_Display)
@@ -106,7 +117,9 @@ unsigned int portDestination = 9999; // Port of AOG that listens
 #include "Adafruit_ADS1015.h"
 #include "MMA8452_AOG.h" 
 #include "EEPROM.h"
-
+#include "LSM9DS1_Registers.h"
+#include "SparkFunLSM9DS1.h"
+#include "LSM9DS1_Types.h"
 // Variables ------------------------------
  // WiFi status LED blink times: searching WIFI: blinking 4x faster; connected: blinking as times set; data available: light on; no data for 2 seconds: blinking
   unsigned long LED_WIFI_time = 0;
@@ -130,7 +143,7 @@ unsigned int portDestination = 9999; // Port of AOG that listens
   const float varProcess = 0.0055; //0,00025 smaller is more filtering
 
    //program flow
-  bool isDataFound = false, isSettingFound = false, AP_running=0,EE_done = 0;
+  bool iI2C_SDAtaFound = false, isSettingFound = false, AP_running=0,EE_done = 0;
   int header = 0, tempHeader = 0, temp;
   int AnalogValue = 0;
   volatile bool steerEnable = false, toggleSteerEnable=false;
@@ -138,7 +151,7 @@ unsigned int portDestination = 9999; // Port of AOG that listens
   float distanceFromLine = 0, corr = 0; // not used
   int16_t idistanceFromLine = 0;
   float olddist=0;
-//  unsigned long oldmillis;  
+  unsigned long oldmillis;  
 
 
   //steering variables
@@ -150,7 +163,9 @@ unsigned int portDestination = 9999; // Port of AOG that listens
   float steerAngleError = 0; //setpoint - actual
   float distanceError = 0; //
   volatile int  pulseACount = 0, pulseBCount = 0;; // Steering Wheel Encoder
-
+  //for use 1k ohm Potentiometer.  you need change 
+  int steeringPositionRawMim = -20800;
+  int steeringPositionRawMax = 0 ;
   
   //IMU, inclinometer variables
   bool imu_initialized=0;
@@ -172,57 +187,69 @@ unsigned int portDestination = 9999; // Port of AOG that listens
 
 
 // Debug ----------------------------------
-byte state_after=0, state_previous=0, breakreason=0;
+byte state_after=0, state_previous=1, breakreason=0;
+
 // Instances ------------------------------
 #if (useOLED_Display)
-  SSD1306Wire  display(0x3c, SDA, SCL);  //OLed 0.96" Display
-  //SH1106Wire  display(0x3C, SDA, SCL);  //OLed 1.3" Display
+  SSD1306Wire  display(0x3c, I2C_SDA, I2C_SCL);  //OLed 0.96" Display
+  //SH1106Wire  display(0x3C, I2C_SDA, I2C_SCL);  //OLed 1.3" Display
 #endif
 Adafruit_ADS1115 ads;     // Use this for the 16-bit version ADS1115
 MMA8452 accelerometer;
 WiFiServer server(80);
 WiFiClient client;
 AsyncUDP udp;
-
+LSM9DS1 imu;
 
 // Setup procedure ------------------------
 void setup() {
-  Wire.begin(SDA, SCL, 400000);
+  Wire.begin(I2C_SDA, I2C_SCL, 400000);
+  //GPIO expander FXL6408 setting
+  // direction (Input/Output)
+  setByteI2C(0x43, 0x03, 0b11111110);
+  // disable High-Z on outputs
+  setByteI2C(0x43, 0x07, 0b00000001);
+  // en-/disable Pullup/downs
+  setByteI2C(0x43, 0x0B, 0b00000001);
+  // set direction of the pull
+  setByteI2C(0x43, 0x0D, 0b00000001);
+
   Serial.begin(115200); 
-  //Serial1.begin(115200, SERIAL_8N1, RX1, TX1);
-  //Serial2.begin(38400,SERIAL_8N1,RX2,TX2); 
+  //Serial1.begin(115200, SERIAL_8N1, F9P_RX, F9P_TX);
+  //Serial2.begin(38400,SERIAL_8N1,RS232_RX,RS232_TX); 
   
   pinMode(Autosteer_Led, OUTPUT);
-  pinMode(PWM_PIN, OUTPUT);
-  pinMode(DIR_PIN, OUTPUT);
-  pinMode(LED_PIN_WIFI, OUTPUT);
-  if (steerSettings.WorkSW_mode > 0) {
-    pinMode(WORKSW_PIN, INPUT_PULLUP);
-  }
-  pinMode(led1, OUTPUT);
-  pinMode(led2, OUTPUT);
+  pinMode(VNH_A_PWM, OUTPUT);
+  pinMode(VNH_B_PWM, OUTPUT);
+  pinMode(WORKSW_PIN, INPUT);
+  pinMode(STEERSW_PIN, INPUT);
+  pinMode(W_A_S, INPUT);
+  //pinMode(LED_PIN_WIFI, OUTPUT);
+  //pinMode(led1, OUTPUT);
+  //pinMode(led2, OUTPUT);
 
   
   //set up the pgn for returning data for autosteer
   toSend[0] = 0x7F;
   toSend[1] = 0xFD;
 
+
   ledcSetup(0,1000,8);  // PWM Output with channel 0, 1kHz, 8-bit resolution (0-255)
   ledcSetup(1,1000,8);  // PWM Output with channel 1, 1kHz, 8-bit resolution (0-255)
-  ledcAttachPin(PWM_PIN,0);  // attach PWM PIN to Channel 0
-  ledcAttachPin(DIR_PIN,1);  // attach PWM PIN to Channel 1
+  ledcAttachPin(VNH_A_PWM,0);  // attach PWM PIN to Channel 0
+  ledcAttachPin(VNH_B_PWM,1);  // attach PWM PIN to Channel 1
 
   if (steerSettings.input_type==0)  steerSettings.SteerPosZero =2048;                //Starting Point with ESP ADC 2048 
   if (steerSettings.input_type >0 && steerSettings.input_type < 3 )  steerSettings.SteerPosZero =13000;  //with ADS start with 13000  
-  
+  if (steerSettings.input_type == 3 )  steerSettings.SteerPosZero =0;  //with ADS start with 0  forLSM9DS1
   restoreEEprom();
   
   //------------------------------------------------------------------------------------------------------------  
-  //create a task that will be executed in the Core1code() function, with priority 1 and executed on core 0
-  xTaskCreatePinnedToCore(Core1code, "Core1", 10000, NULL, 1, &Core1, 0);
+  //create a task that will be executed in the Core1code() function, with priority 1 and executed on core 1
+  xTaskCreatePinnedToCore(Core1code, "Core1", 10000, NULL, 1, &Core1, 1);
   delay(500); 
-  //create a task that will be executed in the Core2code() function, with priority 1 and executed on core 1
-  xTaskCreatePinnedToCore(Core2code, "Core2", 10000, NULL, 1, &Core2, 1); 
+  //create a task that will be executed in the Core2code() function, with priority 1 and executed on core 0
+  xTaskCreatePinnedToCore(Core2code, "Core2", 10000, NULL, 1, &Core2, 0); 
   delay(500); 
   //------------------------------------------------------------------------------------------------------------
   
@@ -231,17 +258,45 @@ void setup() {
   }
   //Setup Interrupt -Steering Wheel encoder + SteerSwitchbutton
   delay(2000);
-  pinMode(WORKSW_PIN, INPUT_PULLUP);
-  if (steerSettings.SteerSwitchType > 0 ){ pinMode(STEERSW_PIN, INPUT_PULLUP); }
-  if (steerSettings.SteerSwitchType == 0) { pinMode(STEERSW_PIN, INPUT_PULLDOWN); }
-  pinMode(encAPin, INPUT_PULLUP);
-  pinMode(encBPin, INPUT_PULLUP);
+ 
+  //if (steerSettings.SteerSwitchType > 0 ){ pinMode(STEERSW_PIN, INPUT); }
+  //if (steerSettings.SteerSwitchType == 0) { pinMode(STEERSW_PIN, INPUT); }
+  //pinMode(encAPin, INPUT);
+  //pinMode(encBPin, INPUT);
 
 
   //Setup Interrupt -Steering Wheel encoder + SteerSwitchbutton
-  attachInterrupt(digitalPinToInterrupt(encAPin), EncoderA_ISR, FALLING);
-  attachInterrupt(digitalPinToInterrupt(encBPin), EncoderB_ISR, FALLING);
+  //attachInterrupt(digitalPinToInterrupt(encAPin), EncoderA_ISR, FALLING);
+  //attachInterrupt(digitalPinToInterrupt(encBPin), EncoderB_ISR, FALLING);
   if (steerSettings.SteerSwitchType >= 2) { attachInterrupt(digitalPinToInterrupt(STEERSW_PIN), Steersw_ISR, FALLING); }
+
+  //imu LSM9DS1 setting
+  imu.settings.device.commInterface = IMU_MODE_I2C;
+  imu.settings.device.mAddress = 0x1C;
+  imu.settings.device.agAddress = 0x6A;
+  imu.settings.mag.scale = 4; // Set mag scale to +/-12 Gs
+        // [sampleRate] sets the output data rate (ODR) of the
+        // magnetometer.
+        // mag data rate can be 0-7:
+        // 0 = 0.625 Hz  4 = 10 Hz
+        // 1 = 1.25 Hz   5 = 20 Hz
+        // 2 = 2.5 Hz    6 = 40 Hz
+        // 3 = 5 Hz      7 = 80 Hz
+  imu.settings.mag.sampleRate = 5; // Set OD rate to 20Hz
+        // [tempCompensationEnable] enables or disables
+        // temperature compensation of the magnetometer.
+  imu.settings.mag.tempCompensationEnable = true;
+        // [XYPerformance] sets the x and y-axis performance of the
+        // magnetometer to either:
+        // 0 = Low power mode      2 = high performance
+        // 1 = medium performance  3 = ultra-high performance
+  imu.settings.mag.XYPerformance = 3; // Ultra-high perform.
+        // [ZPerformance] does the same thing, but only for the z
+  imu.settings.mag.ZPerformance = 3; // Ultra-high perform.
+        // [lowPowerEnable] enables or disables low power mode in
+        // the magnetometer.
+  imu.settings.mag.lowPowerEnable = false;
+  //imu.begin();
 }
   
 

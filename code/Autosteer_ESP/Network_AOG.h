@@ -36,25 +36,25 @@ int Aufruf_Zaehler = 0;
 int action;
 
 // Radiobutton output
-char output_driver_tab[5][22] = {"None", "Cytron MD30 + SWM", "IBT_2 +SWM", "IBT_2 +PWM Valve", "IBT_2 +Danfoss Valve"};
+char output_driver_tab[6][22] = {"None", "Cytron MD30 + SWM", "IBT_2 +SWM", "IBT_2 +PWM Valve", "IBT_2 +Danfoss Valve","NVH7070"};
 
 // Radiobutton analog input
-char was_input_tab[3][25] = {"Arduino/ESP direct", "ADS 1115 single", "ADS 1115 differential"};
+char was_input_tab[4][33] = {"Arduino/ESP direct", "ADS 1115 single", "ADS 1115 diff A1-GND A2-Signal","ADS 1115 diff A3-5v A2-Singal"};
 
 // Radiobutton WAS Invert
 char was_invert_tab[2][15] = {"not inverted", "inverted"};
 
 // Radiobutton IMU Heading Unit
-char imu_type_tab[2][10] = {"None", "BNO 055"};
+char imu_type_tab[2][10] = {"NoHeading", "BNO 055"};
 
 // Radiobutton Inclinometer
-char inclino_type_tab[2][10] = {"None", "MMA 8452"};
+char inclino_type_tab[2][10] = {"None", "LSM9D/MMA"};
 
 // Radiobutton Steerswitch
-char steersw_type_tab[5][15] = {"Switch High", "Switch Low", "Toggle Button", "Analog Buttons",""};
+char steersw_type_tab[5][23] = {"Switch High(pulldown)", "Switch Low", "Toggle Button", "Analog Buttons",""};
 
 // Radiobutton Workswitch
-char worksw_type_tab[4][8] = {"None", "Digital", "Analog", ""};
+char worksw_type_tab[4][18] = {"None", "Digital(pulldown)", "Analog", ""};
 
 // Radiobutton WorkSwitch Invert
 char worksw_invert_tab[2][15] = {"not inverted", "inverted"};
