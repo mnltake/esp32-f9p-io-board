@@ -4,6 +4,8 @@ TaskHandle_t Core2;
 // Release: V1.26
 // 01.01.2019 W.Eder
 // Enhanced by Matthias Hammer 12.01.2019
+// Enhanced by minolu takeuchi 1.11.2019 (for esp32-f9p-io-board designed doppelgrau )
+// https://github.com/doppelgrau/esp32-f9p-io-board
 //##########################################################################################################
 //### Setup Zone ###########################################################################################
 //### Just Default values ##################################################################################
