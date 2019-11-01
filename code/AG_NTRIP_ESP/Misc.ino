@@ -10,7 +10,11 @@
 //  Restore EEprom Data
 //--------------------------------------------------------------
 void restoreEEprom(){
-  byte get_state  = digitalRead(restoreDefault_PIN);
+
+  byte get_state = getByteI2C(0x43, 0x0F);
+  get_state &= 0b00000001;
+  get_state =~get_state;
+  //byte get_state  = digitalRead(restoreDefault_PIN);
   if (debugmode) get_state = true;
   if (get_state ) DBG("State: restoring default values !\n");
   else DBG("State: read default values from EEPROM\n");
@@ -18,7 +22,7 @@ void restoreEEprom(){
   if (EEprom_empty_check()==1 || get_state) { //first start?
     EEprom_write_all();     //write default data
    }
-  if (EEprom_empty_check()==2) { //data available
+  if (EEprom_empty_check()==2 ) { //data available
     EEprom_read_all();
    }
   //EEprom_show_memory();  //
